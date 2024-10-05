@@ -46,7 +46,7 @@ func setup():
 	
 	# Setup
 	cur_match.setup(starting_pets)
-	board.setup(cur_match.get_hands().size(), cur_match.get_center_hand())
+	board.setup(cur_match.get_center_hand())
 	
 	cur_match.start_draft()
 

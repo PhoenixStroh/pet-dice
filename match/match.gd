@@ -67,7 +67,6 @@ func is_pet_in_center(pet_die : PetDie) -> bool:
 func is_pet_in_cur_player(pet_die : PetDie) -> bool:
 	var hand = pet_die.cur_hand
 	if hand:
-		hand.hand_index
 		return (hand.hand_index - 1) == get_whos_turn()
 	push_error("is_pet_in_cur_player did not find a current hand. something is wrong")
 	return false

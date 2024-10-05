@@ -9,7 +9,7 @@ signal pet_die_interacted(pet_die : PetDie)
 
 @export var board_hands : Array[BoardHand]
 
-func setup(total_hands : int, center_hand : Hand):
+func setup(center_hand : Hand):
 	for i in board_hands.size():
 		var board_hand = board_hands[i]
 		board_hand.setup(dice_hold_scene, i)
@@ -19,7 +19,7 @@ func setup(total_hands : int, center_hand : Hand):
 	
 	for i in center_hand.get_pets().size():
 		var pet = center_hand.get_pets()[i]
-		var dice_hold := add_pet_to_hand(0, pet)
+		add_pet_to_hand(0, pet)
 
 func get_board_hand_of_pet(pet_die : PetDie) -> BoardHand:
 	for board_hand in board_hands:
