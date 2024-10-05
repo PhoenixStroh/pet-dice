@@ -3,3 +3,6 @@
 /android/
 
 .tmp
+
+exports/*
+!exports/.gdignore
