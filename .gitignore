@@ -6,3 +6,5 @@
 
 exports/*
 !exports/.gdignore
+
+.github/
