@@ -3,6 +3,8 @@ extends Resource
 
 var _pets : Array[PetDie]
 
+var hand_index := -1
+
 func get_pet(pet : PetDie) -> PetDie:
 	if _pets.has(pet):
 		return _pets[pet]
@@ -21,6 +23,8 @@ func get_pets() -> Array[PetDie]:
 
 func add_pet(pet : PetDie):
 	_pets.append(pet)
+	pet.pet_index = _pets.size() - 1
+	pet.cur_hand = self
 
 func remove_pet(pet : PetDie):
 	var index := get_index_by_pet(pet)
@@ -28,6 +32,12 @@ func remove_pet(pet : PetDie):
 		return
 	
 	_pets.remove_at(index)
+	pet.pet_index = -1
+	pet.cur_hand = null
+
+func move_pet_to_hand(pet : PetDie, hand : Hand):
+	remove_pet(pet)
+	hand.add_pet(pet)
 
 func get_hand_size() -> int:
 	return _pets.size()

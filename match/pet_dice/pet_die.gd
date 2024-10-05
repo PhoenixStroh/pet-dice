@@ -1,7 +1,7 @@
 class_name PetDie
 extends Resource
 
-const VALID_FACE_MIN = 0
+const VALID_FACE_MIN = 1
 const VALID_FACE_MAX = 8
 
 enum DICE_TYPE {
@@ -34,6 +34,18 @@ var _current_face_index := 0 :
 	set(value):
 		_current_face_index = clampi(value, 0, get_dice_size() - 1)
 var is_locked := false
+ 
+func duplicate_fixed() -> PetDie:
+	var pet_die := PetDie.new()
+	
+	pet_die.name = name
+	pet_die.type = type
+	pet_die.faces = faces.duplicate(true)
+	pet_die.ability_text = ability_text
+	pet_die._current_face_index = _current_face_index
+	pet_die.is_locked = is_locked
+	
+	return pet_die
 
 func _is_faces_valid():
 	if faces.size() != get_dice_size():
@@ -47,6 +59,9 @@ func _is_faces_valid():
 	
 	return true
 
+var cur_hand : Hand
+var pet_index := -1
+
 func get_dice_size() -> int:
 	return DICE_TYPE_SIZE[type]
 
@@ -56,9 +71,9 @@ func passive_ability():
 func active_ability():
 	pass
 
-func get_rolled_value() -> int:
+func roll():
 	var index := randi() % get_dice_size()
-	return faces[index]
+	_current_face_index = index
 
 func _to_string() -> String:
 	return "%s(%s) %s%s" % [name, DICE_TYPE_NAME[type], "(L)" if is_locked else "", current_face_value]

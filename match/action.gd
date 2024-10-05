@@ -7,5 +7,5 @@ var selected_hand_index := -1
 
 var stop_current_action := false
 
-var declare_end := false
+var declared_end := false
 var ending_turn := false

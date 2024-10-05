@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcp8spyvt7omj"]
+[gd_scene load_steps=14 format=3 uid="uid://dcp8spyvt7omj"]
 
 [ext_resource type="PackedScene" uid="uid://cf42aj12nfv8c" path="res://board/dice_hold.tscn" id="1_37jhy"]
 [ext_resource type="Script" path="res://board/board.gd" id="1_oks61"]
+[ext_resource type="Script" path="res://board/board_hand.gd" id="3_jfjm0"]
 [ext_resource type="Script" path="res://match/match_director.gd" id="3_y7ne3"]
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="4_2v2k0"]
 [ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="5_fdyh0"]
@@ -28,6 +29,13 @@ size = Vector3(10, 0.2, 5)
 
 [node name="Main" type="Node3D"]
 
+[node name="MatchDirector" type="Node" parent="." node_paths=PackedStringArray("board", "end_turn_button", "declare_end_button")]
+script = ExtResource("3_y7ne3")
+starting_pets = Array[ExtResource("4_2v2k0")]([ExtResource("5_fdyh0"), ExtResource("5_fdyh0"), ExtResource("6_wxms1"), ExtResource("6_wxms1"), ExtResource("7_w7wry"), ExtResource("7_w7wry")])
+board = NodePath("../Board")
+end_turn_button = NodePath("../CanvasLayer/Control/EndTurnButton")
+declare_end_button = NodePath("../CanvasLayer/Control/DeclareEndButton")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vsr34")
 
@@ -43,20 +51,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 material_override = SubResource("StandardMaterial3D_n5gji")
 mesh = SubResource("BoxMesh_mq1ev")
 
-[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("hand_pivots")]
+[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("board_hands")]
 script = ExtResource("1_oks61")
 dice_hold_scene = ExtResource("1_37jhy")
-hand_pivots = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePath("Player2HandPivot")]
+board_hands = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePath("Player2HandPivot")]
 
 [node name="CenterHandPivot" type="Node3D" parent="Board"]
+script = ExtResource("3_jfjm0")
 
 [node name="Player1HandPivot" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6468)
+script = ExtResource("3_jfjm0")
 
 [node name="Player2HandPivot" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7496)
+script = ExtResource("3_jfjm0")
 
-[node name="MatchDirector" type="Node" parent="." node_paths=PackedStringArray("board")]
-script = ExtResource("3_y7ne3")
-starting_pets = Array[ExtResource("4_2v2k0")]([ExtResource("5_fdyh0"), ExtResource("5_fdyh0"), ExtResource("6_wxms1"), ExtResource("6_wxms1"), ExtResource("7_w7wry"), ExtResource("7_w7wry")])
-board = NodePath("../Board")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -281.0
+offset_right = -41.0
+offset_bottom = -168.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "End Turn"
+
+[node name="DeclareEndButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -148.0
+offset_right = -41.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Declare End"
