@@ -7,11 +7,11 @@ extends Node3D
 @export var number_mesh : MeshInstance3D
 
 func update_faces(face_values : Array[int]):
-	var array := [0, 0, 0, 0, 0, 0, 0, 0]
+	var array := PackedInt32Array([0, 0, 0, 0, 0, 0, 0, 0])
 	for i in array.size():
 		if i < face_values.size():
 			array[i] = face_values[i]
-	number_mesh.material_override.set_shader_parameter("shader_parameter/face_values", array)
+	number_mesh.material_override.set("shader_parameter/face_values", array)
 
 func roll_to_index(index : int):
 	if roll_pivot:

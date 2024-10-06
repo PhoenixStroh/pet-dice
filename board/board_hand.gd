@@ -30,6 +30,7 @@ func add_pet(pet_die : PetDie) -> DiceHold:
 	dice_holds.append(dice_hold_instance)
 	add_child(dice_hold_instance)
 	
+	dice_hold_instance.update_faces(pet_die.faces)
 	dice_hold_instance.update_label()
 	
 	space_hand()

@@ -28,6 +28,10 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 	if event.is_action_pressed("interact"):
 		interacted.emit()
 
+func update_faces(face_values : Array[int]):
+	if pet_die_visual:
+		pet_die_visual.update_faces(face_values)
+
 func roll_to_index(index : int):
 	if pet_die_visual:
 		pet_die_visual.roll_to_index(index)

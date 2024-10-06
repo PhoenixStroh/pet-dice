@@ -41,6 +41,11 @@ func move_pet_to_hand(hand_index : int, pet_die : PetDie):
 	remove_pet(pet_die)
 	add_pet_to_hand(hand_index, pet_die)
 
+func update_pet_faces(pet_die : PetDie, face_values : Array[int]):
+	for board_hand in board_hands:
+		if board_hand.get_dice_hold(pet_die):
+			board_hand.get_dice_hold(pet_die).update_faces(face_values)
+
 func roll_pet_to_index(pet_die : PetDie):
 	for board_hand in board_hands:
 		var dice_hold := board_hand.get_dice_hold(pet_die)

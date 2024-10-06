@@ -77,13 +77,13 @@ script = ExtResource("1_lfy4x")
 roll_time = 2.0
 
 [node name="jellyfish" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("1_1kytu")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Jellyfish_D8_002" parent="LurchEmpty/RollMiddle/RollPivot/jellyfish" index="0"]
 material_override = ExtResource("2_d5aoj")
 
 [node name="D8Faces" parent="LurchEmpty/RollMiddle/RollPivot/jellyfish" instance=ExtResource("5_dtl2j")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_tdk2q")
 skeleton = NodePath("../..")
 

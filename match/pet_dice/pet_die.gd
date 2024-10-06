@@ -14,7 +14,7 @@ enum DICE_TYPE {
 }
 
 const DICE_TYPE_SIZE := {
-	DICE_TYPE.D4 : 3,
+	DICE_TYPE.D4 : 4,
 	DICE_TYPE.D6 : 5,
 	DICE_TYPE.D8 : 7,
 }

@@ -11,6 +11,6 @@ ability_text = "When rolled, re-rolls all pets in the center."
 script = ExtResource("1_bpdeo")
 name = "Wolf"
 type = 0
-faces = Array[int]([3, 3, 4])
+faces = Array[int]([3, 3, 4, 6])
 ability = SubResource("Resource_uluwj")
 visual_scene_path = "res://assets/pet_dice/wolf.tscn"
