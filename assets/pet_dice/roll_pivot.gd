@@ -31,6 +31,19 @@ const D8_ROTATIONS := [
 @export var roll_time := 6.0
 @export var roll_height := 4.0
 
+func set_dice_rotation(dice_type : PetDie.DICE_TYPE, index : int):
+	var destination = rotation
+	
+	match dice_type:
+		PetDie.DICE_TYPE.D4:
+			destination = D4_ROTATIONS[index]
+		PetDie.DICE_TYPE.D6:
+			destination = D6_ROTATIONS[index]
+		PetDie.DICE_TYPE.D8:
+			destination = D8_ROTATIONS[index]
+	
+	rotation_degrees = destination
+
 func play_rotation(dice_type : PetDie.DICE_TYPE, index : int):
 	var apex := get_random_rotation()
 	var destination = rotation

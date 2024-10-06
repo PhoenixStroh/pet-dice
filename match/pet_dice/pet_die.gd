@@ -85,6 +85,9 @@ func passive_ability():
 func active_ability():
 	pass
 
+func set_current_face(face_index : int):
+	_current_face_index = face_index
+
 func roll(player_action := false):
 	var index := randi() % get_dice_size()
 	_current_face_index = index

@@ -41,6 +41,12 @@ func _on_pet_die_rolled(pet_die : PetDie):
 	print("rolled ", pet_die)
 	board.roll_pet_to_index(pet_die)
 
+func _on_pet_die_moved_to_hand(pet_die : PetDie, hand : Hand):
+	board.move_pet_to_hand(hand.hand_index, pet_die)
+
+func _on_pet_die_updated(pet_die : PetDie):
+	board.update_pet(pet_die)
+
 func _on_pet_die_lurched(pet_die : PetDie):
 	board.lurch_pet(pet_die)
 
@@ -57,6 +63,8 @@ func setup():
 	cur_match.pet_die_rolled.connect(_on_pet_die_rolled)
 	cur_match.pet_die_lurched.connect(_on_pet_die_lurched)
 	cur_match.pet_die_shaken.connect(_on_pet_die_shaken)
+	cur_match.pet_die_updated.connect(_on_pet_die_updated)
+	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
 	
 	# Setup
 	cur_match.setup(starting_pets)
@@ -73,6 +81,9 @@ func process_action(action : Action):
 					action_draft_pet(action.selected_pet)
 		
 		Match.MATCH_STATE.DURING:
+			if cur_match.is_input_frozen:
+				return
+			
 			cur_match.update_passives()
 			
 			match cur_match.turn_state:
@@ -117,11 +128,11 @@ func action_draft_pet(pet_die : PetDie):
 				dice_hold.update_label()
 
 func action_roll_dice(pet_die : PetDie):
-	var prev_turn_state := cur_match.start_no_turn()
+	cur_match.is_input_frozen = true
 	
 	await cur_match.roll_pet(pet_die, true)
 	
-	cur_match.end_no_turn(prev_turn_state)
+	cur_match.is_input_frozen = false
 
 func action_end_turn():
 	cur_match.end_turn()

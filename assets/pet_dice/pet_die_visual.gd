@@ -6,6 +6,9 @@ extends Node3D
 @export var animation_player : AnimationPlayer
 @export var number_mesh : MeshInstance3D
 
+func update(pet_die : PetDie):
+	roll_pivot.set_dice_rotation(die_type, pet_die.get_current_face_index())
+
 func update_faces(face_values : Array[int]):
 	var array := PackedInt32Array([0, 0, 0, 0, 0, 0, 0, 0])
 	for i in array.size():

@@ -2,6 +2,7 @@ class_name Hand
 extends Resource
 
 signal pet_die_rolled(pet : PetDie)
+signal pet_die_moved_to(pet : PetDie)
 signal pet_die_started_pet_turn(pet : PetDie)
 
 var _pets : Array[PetDie]
@@ -51,6 +52,7 @@ func remove_pet(pet : PetDie):
 func move_pet_to_hand(pet : PetDie, hand : Hand):
 	remove_pet(pet)
 	hand.add_pet(pet)
+	hand.pet_die_moved_to.emit(pet)
 
 func roll_all_pets():
 	for pet in get_pets():

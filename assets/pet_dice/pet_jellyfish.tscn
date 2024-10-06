@@ -1,20 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfgf1frsg4qo5"]
+[gd_scene load_steps=12 format=3 uid="uid://ra2blpdaxeic"]
 
-[ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_6dqab"]
-[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_o3oek"]
-[ext_resource type="PackedScene" uid="uid://ck2jr2q21m5jk" path="res://assets/pet_dice/models/armadillo.glb" id="1_o41r5"]
-[ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="2_sblr2"]
-[ext_resource type="PackedScene" uid="uid://bt8s5pt85py3" path="res://assets/pet_dice/d6_faces.tscn" id="5_jn7w2"]
-[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="5_ulc8u"]
-[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="6_86khy"]
+[ext_resource type="PackedScene" uid="uid://c8lquwg48v6w7" path="res://assets/pet_dice/models/Jellyfish.glb" id="1_1kytu"]
+[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_lfy4x"]
+[ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_ll10o"]
+[ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="2_d5aoj"]
+[ext_resource type="PackedScene" uid="uid://dx4kfrbdfedgy" path="res://assets/pet_dice/d8_faces.tscn" id="5_dtl2j"]
+[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="6_ekygq"]
+[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="7_pvbco"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_58buw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdk2q"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("6_86khy")
+shader = ExtResource("6_ekygq")
 shader_parameter/growth = 0.015
 shader_parameter/face_values = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
-shader_parameter/albedo_texture = ExtResource("5_ulc8u")
+shader_parameter/albedo_texture = ExtResource("7_pvbco")
 
 [sub_resource type="Animation" id="Animation_6vpuk"]
 length = 0.916667
@@ -58,31 +58,31 @@ _data = {
 "shake": SubResource("Animation_dfb6j")
 }
 
-[node name="Armadillo" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
-script = ExtResource("1_6dqab")
-die_type = 1
+[node name="Jellyfish" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
+script = ExtResource("1_ll10o")
+die_type = 2
 roll_pivot = NodePath("LurchEmpty/RollMiddle/RollPivot")
 animation_player = NodePath("AnimationPlayer")
-number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/Armadillo/D6Faces")
+number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/jellyfish/D8Faces")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.415786, 0)
 
 [node name="RollPivot" type="Node3D" parent="LurchEmpty/RollMiddle"]
-script = ExtResource("1_o3oek")
+script = ExtResource("1_lfy4x")
 roll_time = 2.0
 
-[node name="Armadillo" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("1_o41r5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="jellyfish" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("1_1kytu")]
 
-[node name="Armadillo_D6_002" parent="LurchEmpty/RollMiddle/RollPivot/Armadillo" index="0"]
-material_override = ExtResource("2_sblr2")
+[node name="Jellyfish_D8_002" parent="LurchEmpty/RollMiddle/RollPivot/jellyfish" index="0"]
+material_override = ExtResource("2_d5aoj")
 
-[node name="D6Faces" parent="LurchEmpty/RollMiddle/RollPivot/Armadillo" instance=ExtResource("5_jn7w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2.98023e-08)
-material_override = SubResource("ShaderMaterial_58buw")
+[node name="D8Faces" parent="LurchEmpty/RollMiddle/RollPivot/jellyfish" instance=ExtResource("5_dtl2j")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_tdk2q")
 skeleton = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -91,4 +91,4 @@ libraries = {
 "": SubResource("AnimationLibrary_vhqpj")
 }
 
-[editable path="LurchEmpty/RollMiddle/RollPivot/Armadillo"]
+[editable path="LurchEmpty/RollMiddle/RollPivot/jellyfish"]

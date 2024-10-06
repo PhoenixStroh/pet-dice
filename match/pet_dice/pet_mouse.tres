@@ -13,4 +13,4 @@ name = "Mouse"
 type = 1
 faces = Array[int]([1, 1, 2, 2, 3])
 ability = SubResource("Resource_1dv8l")
-visual_scene_path = "res://assets/pet_dice/armadillo.tscn"
+visual_scene_path = "res://assets/pet_dice/pet_armadillo.tscn"

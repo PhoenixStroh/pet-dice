@@ -1,20 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dudsjfcopmc3f"]
+[gd_scene load_steps=12 format=3 uid="uid://lnu8eyg7m8n5"]
 
-[ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_4p5w3"]
-[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_at2ng"]
-[ext_resource type="PackedScene" uid="uid://o6x8qipkno2f" path="res://assets/pet_dice/models/wolf.glb" id="2_6hjxk"]
-[ext_resource type="PackedScene" uid="uid://d4a5r8atlqw42" path="res://assets/pet_dice/d4_faces.tscn" id="3_lqpxk"]
-[ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="3_pdwg0"]
-[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="5_4s6e5"]
-[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="6_u82ul"]
+[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_2xrwp"]
+[ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_e4vrq"]
+[ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="3_5s6n5"]
+[ext_resource type="PackedScene" uid="uid://8biwr3l3ij48" path="res://assets/pet_dice/models/Magpie.glb" id="3_d27n7"]
+[ext_resource type="PackedScene" uid="uid://d4a5r8atlqw42" path="res://assets/pet_dice/d4_faces.tscn" id="4_sm3cg"]
+[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="5_upvet"]
+[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="6_yxbqi"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccjmi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bate"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("5_4s6e5")
-shader_parameter/growth = 0.015
+shader = ExtResource("5_upvet")
+shader_parameter/growth = 0.1
 shader_parameter/face_values = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
-shader_parameter/albedo_texture = ExtResource("6_u82ul")
+shader_parameter/albedo_texture = ExtResource("6_yxbqi")
 
 [sub_resource type="Animation" id="Animation_6vpuk"]
 length = 0.916667
@@ -58,11 +58,11 @@ _data = {
 "shake": SubResource("Animation_dfb6j")
 }
 
-[node name="Wolf" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
-script = ExtResource("1_4p5w3")
+[node name="Magpie" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
+script = ExtResource("1_e4vrq")
 roll_pivot = NodePath("LurchEmpty/RollMiddle/RollPivot")
 animation_player = NodePath("AnimationPlayer")
-number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/wolf/D4Faces")
+number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/Magpie/D4Faces")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
 
@@ -70,17 +70,16 @@ number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/wolf/D4Faces")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250325, 0)
 
 [node name="RollPivot" type="Node3D" parent="LurchEmpty/RollMiddle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("1_at2ng")
+script = ExtResource("1_2xrwp")
 roll_time = 2.0
 
-[node name="wolf" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("2_6hjxk")]
+[node name="Magpie" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("3_d27n7")]
 
-[node name="Wolf_D4" parent="LurchEmpty/RollMiddle/RollPivot/wolf" index="0"]
-material_override = ExtResource("3_pdwg0")
+[node name="Magpie_D4_001" parent="LurchEmpty/RollMiddle/RollPivot/Magpie" index="0"]
+material_override = ExtResource("3_5s6n5")
 
-[node name="D4Faces" parent="LurchEmpty/RollMiddle/RollPivot/wolf" instance=ExtResource("3_lqpxk")]
-material_override = SubResource("ShaderMaterial_ccjmi")
+[node name="D4Faces" parent="LurchEmpty/RollMiddle/RollPivot/Magpie" instance=ExtResource("4_sm3cg")]
+material_override = SubResource("ShaderMaterial_0bate")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../LurchEmpty")
@@ -88,4 +87,4 @@ libraries = {
 "": SubResource("AnimationLibrary_vhqpj")
 }
 
-[editable path="LurchEmpty/RollMiddle/RollPivot/wolf"]
+[editable path="LurchEmpty/RollMiddle/RollPivot/Magpie"]

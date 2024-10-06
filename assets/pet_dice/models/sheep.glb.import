@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d0q5dptnljjvd"
-path="res://.godot/imported/sheep.glb-162aa791b1e36109dcc34a5a073e17cf.scn"
+uid="uid://y3nw0ehj4vet"
+path="res://.godot/imported/Sheep.glb-28020d8b37782391e86718f2dd0f0dc4.scn"
 
 [deps]
 
-source_file="res://assets/pet_dice/models/sheep.glb"
-dest_files=["res://.godot/imported/sheep.glb-162aa791b1e36109dcc34a5a073e17cf.scn"]
+source_file="res://assets/pet_dice/models/Sheep.glb"
+dest_files=["res://.godot/imported/Sheep.glb-28020d8b37782391e86718f2dd0f0dc4.scn"]
 
 [params]
 
@@ -31,12 +31,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"@MATERIAL:0": {
-"use_external/path": "res://assets/pet_dice/pet_dice_mat.tres"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

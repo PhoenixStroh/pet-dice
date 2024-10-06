@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ck2jr2q21m5jk"
-path="res://.godot/imported/armadillo.glb-ed3c9edeb0cd42f925b49b8bf2b4139e.scn"
+path="res://.godot/imported/Armadillo.glb-530bf7273570d9883755c08fec964dc2.scn"
 
 [deps]
 
-source_file="res://assets/pet_dice/models/armadillo.glb"
-dest_files=["res://.godot/imported/armadillo.glb-ed3c9edeb0cd42f925b49b8bf2b4139e.scn"]
+source_file="res://assets/pet_dice/models/Armadillo.glb"
+dest_files=["res://.godot/imported/Armadillo.glb-530bf7273570d9883755c08fec964dc2.scn"]
 
 [params]
 
