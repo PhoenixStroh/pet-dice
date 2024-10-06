@@ -41,8 +41,8 @@ func move_pet_to_hand(hand_index : int, pet_die : PetDie):
 	remove_pet(pet_die)
 	add_pet_to_hand(hand_index, pet_die)
 
-func roll_pet_visually(pet_die : PetDie):
+func roll_pet_to_index(pet_die : PetDie):
 	for board_hand in board_hands:
 		var dice_hold := board_hand.get_dice_hold(pet_die)
 		if dice_hold:
-			dice_hold.update_label()
+			dice_hold.roll_to_index(pet_die.get_current_face_index())

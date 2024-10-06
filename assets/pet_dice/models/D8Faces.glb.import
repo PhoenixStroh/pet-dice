@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cqubonu5m0l4g"
-path="res://.godot/imported/D6Faces.glb-e3b0b82a9325331385b442ae839fddd7.scn"
+uid="uid://bmldo2cqtqtei"
+path="res://.godot/imported/D8Faces.glb-e9df079c304a1783d3828e4e6dd6555b.scn"
 
 [deps]
 
-source_file="res://assets/pet_dice/models/D6Faces.glb"
-dest_files=["res://.godot/imported/D6Faces.glb-e3b0b82a9325331385b442ae839fddd7.scn"]
+source_file="res://assets/pet_dice/models/D8Faces.glb"
+dest_files=["res://.godot/imported/D8Faces.glb-e9df079c304a1783d3828e4e6dd6555b.scn"]
 
 [params]
 
@@ -33,14 +33,14 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"D6Faces_D6Faces": {
+"D8Faces_D8Faces": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://assets/pet_dice/models/d6_faces_mesh.res"
+"save_to_file/path": "res://assets/pet_dice/models/d8_faces_mesh.res"
 }
 }
 }

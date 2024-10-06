@@ -39,7 +39,7 @@ func _on_pet_die_interacted(pet_die : PetDie):
 
 func _on_pet_die_rolled(pet_die : PetDie):
 	print("rolled ", pet_die)
-	board.roll_pet_visually(pet_die)
+	board.roll_pet_to_index(pet_die)
 
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):

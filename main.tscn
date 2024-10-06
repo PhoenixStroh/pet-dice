@@ -44,7 +44,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.10233, 3.04188)
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
 
 [node name="TableMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -60,11 +60,11 @@ board_hands = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePa
 script = ExtResource("3_jfjm0")
 
 [node name="Player1HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642)
 script = ExtResource("3_jfjm0")
 
 [node name="Player2HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7496)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.57091)
 script = ExtResource("3_jfjm0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

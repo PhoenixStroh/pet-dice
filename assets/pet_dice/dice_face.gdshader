@@ -17,7 +17,8 @@ void fragment() {
 	int face_value = face_values[int(floor(UV.y * 10.0))];
 	
 	vec4 albedo_alpha = texture(albedo_texture, UV + vec2(float(face_value) * (1.0 / float(slices)), 0.0));
-	ALBEDO = albedo_alpha.rgb;
+	ALBEDO = albedo_alpha.rgb * 0.5;
+	EMISSION = ALBEDO;
 	ALPHA = albedo_alpha.a;
 }
 
