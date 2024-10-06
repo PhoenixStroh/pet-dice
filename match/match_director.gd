@@ -16,8 +16,9 @@ func _ready() -> void:
 	declare_end_button.pressed.connect(_on_declare_end_button_pressed)
 	
 	for i in starting_pets.size():
-		var starting_pet = starting_pets[i]
+		var starting_pet := starting_pets[i]
 		starting_pets[i] = starting_pet.duplicate_fixed()
+		starting_pets[i].setup()
 	
 	setup()
 
@@ -36,6 +37,10 @@ func _on_pet_die_interacted(pet_die : PetDie):
 	action.selected_pet = pet_die
 	process_action(action)
 
+func _on_pet_die_rolled(pet_die : PetDie):
+	print("rolled ", pet_die)
+	board.roll_pet_visually(pet_die)
+
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("restart"):
@@ -43,6 +48,7 @@ func _input(event: InputEvent) -> void:
 
 func setup():
 	cur_match = Match.new()
+	cur_match.pet_die_rolled.connect(_on_pet_die_rolled)
 	
 	# Setup
 	cur_match.setup(starting_pets)
@@ -59,14 +65,27 @@ func process_action(action : Action):
 					action_draft_pet(action.selected_pet)
 		
 		Match.MATCH_STATE.DURING:
-			if action.selected_pet:
-				if cur_match.is_pet_in_cur_player_or_center(action.selected_pet):
-					action_roll_dice(action.selected_pet)
-			elif action.ending_turn:
-				action_end_turn()
-			elif action.declared_end:
-				if not cur_match.end_declared:
-					action_declare_end()
+			cur_match.update_passives()
+			
+			match cur_match.turn_state:
+				cur_match.TURN_STATE.TURN_ACTION:
+					_process_turn_action(action)
+				
+				cur_match.TURN_STATE.PET_ACTION:
+					var pet_ability_finished := cur_match.get_cur_ability().process_pet_action(cur_match, action)
+					if pet_ability_finished:
+						cur_match.turn_state = cur_match.TURN_STATE.TURN_ACTION
+
+func _process_turn_action(action : Action):
+	if action.selected_pet:
+		if cur_match.can_take_turn_roll():
+			if cur_match.is_pet_in_cur_player_or_center(action.selected_pet):
+				action_roll_dice(action.selected_pet)
+	elif action.ending_turn:
+		action_end_turn()
+	elif action.declared_end:
+		if not cur_match.end_declared:
+			action_declare_end()
 
 func action_draft_pet(pet_die : PetDie):
 	print(pet_die)
@@ -87,10 +106,7 @@ func action_draft_pet(pet_die : PetDie):
 				dice_hold.update_label()
 
 func action_roll_dice(pet_die : PetDie):
-	cur_match.roll_pet(pet_die)
-	board.roll_pet_visually(pet_die)
-	print("rolled ", pet_die)
-	cur_match.end_turn()
+	cur_match.roll_pet(pet_die, true)
 
 func action_end_turn():
 	cur_match.end_turn()

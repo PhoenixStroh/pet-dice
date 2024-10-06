@@ -1,7 +1,8 @@
 class_name Match
 extends Resource
 
-
+signal pet_die_rolled(pet_die : PetDie)
+signal pet_die_started_pet_turn(pet : PetDie)
 
 enum MATCH_STATE {
 	SETUP,
@@ -11,21 +12,21 @@ enum MATCH_STATE {
 }
 
 enum TURN_STATE {
-	SETUP,
 	TURN_ACTION,
 	PET_ACTION,
-	END,
 }
 
 @export var minimum_turns := 2
 
 var match_state : MATCH_STATE = MATCH_STATE.SETUP
-var turn_state : TURN_STATE = TURN_STATE.SETUP
+var turn_state : TURN_STATE = TURN_STATE.TURN_ACTION
 var turn_index := 0
 var turn_rolls_used := 0
 var end_declared := false
 var turn_index_since_declared := 0
 var _player_count := 2
+
+var cur_pet_dice : PetDie
 
 # 0: center, 1: player#1, 2: player#2
 var _hands : Array[Hand]
@@ -57,6 +58,9 @@ func get_player_count() -> int:
 func get_draft_turn_legnth() -> int:
 	return get_player_count() * 2
 
+func get_cur_ability() -> Ability:
+	return cur_pet_dice.ability
+
 func is_pet_in_center(pet_die : PetDie) -> bool:
 	var hand = pet_die.cur_hand
 	if hand:
@@ -74,11 +78,19 @@ func is_pet_in_cur_player(pet_die : PetDie) -> bool:
 func is_pet_in_cur_player_or_center(pet_die : PetDie) -> bool:
 	return is_pet_in_center(pet_die) or is_pet_in_cur_player(pet_die)
 
+func can_take_turn_roll() -> bool:
+	var cur_hand := get_cur_player_hand()
+	return turn_rolls_used < cur_hand.turn_rolls_allowed + cur_hand.additional_turn_rolls_allowed
+
 #endregion
+
+func _on_pet_die_started_pet_turn(pet_die : PetDie):
+	start_pet_turn(pet_die)
+	pet_die_started_pet_turn.emit()
 
 func setup(s_starting_pets : Array[PetDie], s_player_count := 2):
 	match_state = MATCH_STATE.SETUP
-	turn_state = TURN_STATE.SETUP
+	turn_state = TURN_STATE.TURN_ACTION
 	turn_index = 0
 	end_declared = false
 	_player_count = s_player_count
@@ -86,7 +98,11 @@ func setup(s_starting_pets : Array[PetDie], s_player_count := 2):
 	for i in range(1 + get_player_count()):
 		var hand := Hand.new()
 		hand.hand_index = i
+		hand.cur_match = self
 		_hands.append(hand)
+		
+		hand.pet_die_rolled.connect(pet_die_rolled.emit)
+		hand.pet_die_started_pet_turn.connect(_on_pet_die_started_pet_turn)
 	
 	for s_starting_pet in s_starting_pets:
 		_hands[0].add_pet(s_starting_pet)
@@ -102,8 +118,18 @@ func start_during():
 		for pet in hand.get_pets():
 			roll_pet(pet)
 
+func start_pet_turn(pet_die : PetDie):
+	turn_state = TURN_STATE.PET_ACTION
+	if pet_die.ability:
+		cur_pet_dice = pet_die
+
+func end_pet_turn():
+	turn_state = TURN_STATE.TURN_ACTION
+	cur_pet_dice = null
+
 func end_turn():
 	turn_index += 1
+	turn_rolls_used = 0
 	if end_declared:
 		turn_index_since_declared += 1
 	
@@ -136,8 +162,19 @@ func end_turn():
 				var valuation := best_player
 				print("Player #%s had a %s" % [valuation.player_index, valuation])
 
-func roll_pet(pet_die : PetDie):
-	pet_die.roll()
+func roll_pet(pet_die : PetDie, player_action := false):
+	pet_die.roll(player_action)
+	if player_action:
+		turn_rolls_used += 1
+
+func update_passives():
+	for hand in get_hands():
+		hand.additional_turn_rolls_allowed = 0
+	
+	for hand in get_hands():
+		for pet in hand.get_pets():
+			if pet.ability:
+				pet.ability.perform_passive_ability(self)
 
 func valuate_hand(player_hand : Hand) -> Valuation:
 	var center_hand := get_center_hand()

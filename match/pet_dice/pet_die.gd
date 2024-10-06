@@ -1,6 +1,9 @@
 class_name PetDie
 extends Resource
 
+signal rolled
+signal started_pet_turn
+
 const VALID_FACE_MIN = 1
 const VALID_FACE_MAX = 8
 
@@ -25,7 +28,7 @@ const DICE_TYPE_NAME := {
 @export var name : String = ""
 @export var type : DICE_TYPE = DICE_TYPE.D6
 @export var faces : Array[int] = []
-@export var ability_text := "This is the default ability text."
+@export var ability : Ability
 
 var current_face_value : int :
 	get():
@@ -34,14 +37,18 @@ var _current_face_index := 0 :
 	set(value):
 		_current_face_index = clampi(value, 0, get_dice_size() - 1)
 var is_locked := false
- 
+
+func setup():
+	ability.cur_pet_dice = self
+
 func duplicate_fixed() -> PetDie:
 	var pet_die := PetDie.new()
 	
 	pet_die.name = name
 	pet_die.type = type
 	pet_die.faces = faces.duplicate(true)
-	pet_die.ability_text = ability_text
+	if ability:
+		pet_die.ability = ability.duplicate_fixed()
 	pet_die._current_face_index = _current_face_index
 	pet_die.is_locked = is_locked
 	
@@ -71,9 +78,15 @@ func passive_ability():
 func active_ability():
 	pass
 
-func roll():
+func roll(player_action := false):
 	var index := randi() % get_dice_size()
 	_current_face_index = index
+	rolled.emit()
+	
+	if ability and player_action:
+		var is_start_pet_turn := ability.perform_active_ability(cur_hand.cur_match)
+		if is_start_pet_turn:
+			started_pet_turn.emit()
 
 func _to_string() -> String:
 	return "%s(%s) %s%s" % [name, DICE_TYPE_NAME[type], "(L)" if is_locked else "", current_face_value]

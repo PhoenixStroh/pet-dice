@@ -1,10 +1,15 @@
-[gd_resource type="Resource" script_class="PetDie" load_steps=2 format=3 uid="uid://b6vxtbf6uk0qc"]
+[gd_resource type="Resource" script_class="PetDie" load_steps=4 format=3 uid="uid://b6vxtbf6uk0qc"]
 
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="1_a3cnn"]
+[ext_resource type="Script" path="res://match/pet_dice/ability_jellyfish.gd" id="1_rh1yl"]
+
+[sub_resource type="Resource" id="Resource_cpe2g"]
+script = ExtResource("1_rh1yl")
+ability_text = "When rolled, you may choose a pet in your opponent's hand to re-roll"
 
 [resource]
 script = ExtResource("1_a3cnn")
 name = "Jellyfish"
 type = 2
 faces = Array[int]([1, 1, 2, 4, 4, 7, 8])
-ability_text = "This is the default ability text."
+ability = SubResource("Resource_cpe2g")
