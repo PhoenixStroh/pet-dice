@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cehpmd1qjr5rx"]
+
+[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="1_qtbe6"]
+[ext_resource type="Texture2D" uid="uid://by3cwk5pxmtxn" path="res://assets/pet_dice/dice_faces.png" id="2_xpsw3"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_qtbe6")
+shader_parameter/growth = 0.015
+shader_parameter/face_values = PackedInt32Array(11, 4, 2, 5, 7, 5, 4, 4)
+shader_parameter/albedo_texture = ExtResource("2_xpsw3")

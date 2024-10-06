@@ -1,44 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfgf1frsg4qo5"]
+[gd_scene load_steps=6 format=3 uid="uid://dfgf1frsg4qo5"]
 
+[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_o3oek"]
 [ext_resource type="PackedScene" uid="uid://ck2jr2q21m5jk" path="res://assets/pet_dice/models/armadillo.glb" id="1_o41r5"]
 [ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="2_sblr2"]
+[ext_resource type="PackedScene" uid="uid://cqubonu5m0l4g" path="res://assets/pet_dice/models/D6Faces.glb" id="4_s7ysy"]
+[ext_resource type="Material" uid="uid://cehpmd1qjr5rx" path="res://assets/pet_dice/face_mat.tres" id="5_djmc1"]
 
 [node name="Armadillo" type="Node3D"]
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="RotPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="RollPivot" type="Node3D" parent="."]
+transform = Transform3D(0, -1, 0, -1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_o3oek")
+roll_time = 2.0
 
-[node name="Armadillo" parent="RotPivot" instance=ExtResource("1_o41r5")]
+[node name="Armadillo" parent="RollPivot" instance=ExtResource("1_o41r5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="Armadillo_D6_002" parent="RotPivot/Armadillo" index="0"]
+[node name="Armadillo_D6_002" parent="RollPivot/Armadillo" index="0"]
 material_override = ExtResource("2_sblr2")
 
-[node name="FaceLabel0" type="Label3D" parent="RotPivot"]
+[node name="D6Faces2" parent="RollPivot" instance=ExtResource("4_s7ysy")]
+
+[node name="D6Faces" parent="RollPivot/D6Faces2" index="0"]
+material_override = ExtResource("5_djmc1")
+
+[node name="FaceLabel0" type="Label3D" parent="RollPivot"]
 transform = Transform3D(1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, 1, 3.55271e-15, -1, -4.37114e-08, 0, 0.52, 0)
+visible = false
 text = "0"
 font_size = 120
 
-[node name="FaceLabel1" type="Label3D" parent="RotPivot"]
+[node name="FaceLabel1" type="Label3D" parent="RollPivot"]
 transform = Transform3D(-4.37114e-08, 8.74228e-08, 1, 2.68657e-16, 1, -8.74228e-08, -1, 5.4634e-15, -4.37114e-08, 0.52, -2.98023e-08, 3.55271e-15)
+visible = false
 text = "1"
 font_size = 120
 
-[node name="FaceLabel2" type="Label3D" parent="RotPivot"]
+[node name="FaceLabel2" type="Label3D" parent="RollPivot"]
 transform = Transform3D(-1, 8.74228e-08, -1.50996e-07, 8.74228e-08, 1, -8.74228e-08, 1.50996e-07, -8.74228e-08, -1, -1.77636e-15, -2.98023e-08, -0.52)
+visible = false
 text = "2"
 font_size = 120
 
-[node name="FaceLabel3" type="Label3D" parent="RotPivot"]
+[node name="FaceLabel3" type="Label3D" parent="RollPivot"]
 transform = Transform3D(-1, 8.74228e-08, -1.74846e-07, 1.74846e-07, -1.31134e-07, -1, -8.74228e-08, -1, 1.31134e-07, -1.77636e-15, -0.52, 0)
+visible = false
 text = "3"
 font_size = 120
 
-[node name="FaceLabel4" type="Label3D" parent="RotPivot"]
+[node name="FaceLabel4" type="Label3D" parent="RollPivot"]
 transform = Transform3D(-4.37114e-08, 7.10543e-15, -1, 8.74228e-08, 1, 3.55271e-15, 1, -8.74228e-08, -4.37114e-08, -0.52, 0, 0)
+visible = false
 text = "4"
 font_size = 120
 
-[editable path="RotPivot/Armadillo"]
+[editable path="RollPivot/Armadillo"]
+[editable path="RollPivot/D6Faces2"]
