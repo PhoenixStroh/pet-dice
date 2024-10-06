@@ -93,6 +93,7 @@ func roll(player_action := false):
 	await Utils.create_timer(2.0 + 0.1).timeout
 	
 	if ability and player_action:
+		@warning_ignore("redundant_await")
 		var is_start_pet_turn := await ability.perform_active_ability(cur_hand.cur_match)
 		
 		if is_start_pet_turn:
