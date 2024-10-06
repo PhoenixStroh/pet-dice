@@ -1,8 +1,15 @@
 class_name Hand
 extends Resource
 
+signal pet_die_rolled(pet : PetDie)
+signal pet_die_started_pet_turn(pet : PetDie)
+
 var _pets : Array[PetDie]
 
+var turn_rolls_allowed := 1
+var additional_turn_rolls_allowed := 0
+
+var cur_match : Match
 var hand_index := -1
 
 func get_pet(pet : PetDie) -> PetDie:
@@ -25,6 +32,9 @@ func add_pet(pet : PetDie):
 	_pets.append(pet)
 	pet.pet_index = _pets.size() - 1
 	pet.cur_hand = self
+	
+	pet.rolled.connect(pet_die_rolled.emit.bind(pet))
+	pet.started_pet_turn.connect(pet_die_started_pet_turn.emit.bind(pet))
 
 func remove_pet(pet : PetDie):
 	var index := get_index_by_pet(pet)
@@ -34,10 +44,17 @@ func remove_pet(pet : PetDie):
 	_pets.remove_at(index)
 	pet.pet_index = -1
 	pet.cur_hand = null
+	
+	pet.rolled.disconnect(pet_die_rolled.emit)
+	pet.started_pet_turn.disconnect(pet_die_started_pet_turn.emit)
 
 func move_pet_to_hand(pet : PetDie, hand : Hand):
 	remove_pet(pet)
 	hand.add_pet(pet)
+
+func roll_all_pets():
+	for pet in get_pets():
+		pet.roll()
 
 func get_hand_size() -> int:
 	return _pets.size()
