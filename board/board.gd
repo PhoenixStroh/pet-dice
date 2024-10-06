@@ -51,3 +51,15 @@ func roll_pet_to_index(pet_die : PetDie):
 		var dice_hold := board_hand.get_dice_hold(pet_die)
 		if dice_hold:
 			dice_hold.roll_to_index(pet_die.get_current_face_index())
+
+func lurch_pet(pet_die : PetDie):
+	for board_hand in board_hands:
+		var dice_hold := board_hand.get_dice_hold(pet_die)
+		if dice_hold:
+			dice_hold.play_lurch()
+
+func shake_pet(pet_die : PetDie):
+	for board_hand in board_hands:
+		var dice_hold := board_hand.get_dice_hold(pet_die)
+		if dice_hold:
+			dice_hold.play_shake()

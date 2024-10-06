@@ -2,6 +2,8 @@ class_name Match
 extends Resource
 
 signal pet_die_rolled(pet_die : PetDie)
+signal pet_die_lurched(pet_die : PetDie)
+signal pet_die_shaken(pet_die : PetDie)
 signal pet_die_started_pet_turn(pet : PetDie)
 
 enum MATCH_STATE {
@@ -14,6 +16,7 @@ enum MATCH_STATE {
 enum TURN_STATE {
 	TURN_ACTION,
 	PET_ACTION,
+	NO_ACTION,
 }
 
 @export var minimum_turns := 2
@@ -127,6 +130,14 @@ func end_pet_turn():
 	turn_state = TURN_STATE.TURN_ACTION
 	cur_pet_dice = null
 
+func start_no_turn() -> TURN_STATE:
+	var cur_turn_state = turn_state
+	turn_state = TURN_STATE.NO_ACTION
+	return cur_turn_state
+
+func end_no_turn(prev_turn : TURN_STATE):
+	turn_state = prev_turn
+
 func end_turn():
 	turn_index += 1
 	turn_rolls_used = 0
@@ -163,9 +174,15 @@ func end_turn():
 				print("Player #%s had a %s" % [valuation.player_index, valuation])
 
 func roll_pet(pet_die : PetDie, player_action := false):
-	pet_die.roll(player_action)
 	if player_action:
 		turn_rolls_used += 1
+	await pet_die.roll(player_action)
+
+func call_pet_lurched(pet_die : PetDie):
+	pet_die_lurched.emit(pet_die)
+
+func call_pet_shaken(pet_die : PetDie):
+	pet_die_shaken.emit(pet_die)
 
 func update_passives():
 	for hand in get_hands():

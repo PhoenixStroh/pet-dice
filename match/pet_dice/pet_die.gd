@@ -90,8 +90,11 @@ func roll(player_action := false):
 	_current_face_index = index
 	rolled.emit()
 	
+	await Utils.create_timer(2.0 + 0.1).timeout
+	
 	if ability and player_action:
-		var is_start_pet_turn := ability.perform_active_ability(cur_hand.cur_match)
+		var is_start_pet_turn := await ability.perform_active_ability(cur_hand.cur_match)
+		
 		if is_start_pet_turn:
 			started_pet_turn.emit()
 
