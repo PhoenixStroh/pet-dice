@@ -66,13 +66,11 @@ animation_player = NodePath("AnimationPlayer")
 number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/Armadillo/D6Faces")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="RollPivot" type="Node3D" parent="LurchEmpty/RollMiddle"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_o3oek")
 roll_time = 2.0
 

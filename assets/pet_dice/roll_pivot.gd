@@ -3,6 +3,13 @@ extends Node3D
 
 const ROT_UNIT := TAU / 4.0
 
+const D4_ROTATIONS := [
+	Vector3(0, 0, 0),
+	Vector3(27.9, -19, 112.7),
+	Vector3(27.8, 17.5, -112),
+	Vector3(-70, -180, -180),
+]
+
 const D6_ROTATIONS := [
 	Vector3(0, 0, 0),
 	Vector3(0, -180, 90),
@@ -30,7 +37,7 @@ func play_rotation(dice_type : PetDie.DICE_TYPE, index : int):
 	
 	match dice_type:
 		PetDie.DICE_TYPE.D4:
-			pass
+			destination = D4_ROTATIONS[index]
 		PetDie.DICE_TYPE.D6:
 			destination = D6_ROTATIONS[index]
 		PetDie.DICE_TYPE.D8:

@@ -1,20 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://ra2blpdaxeic"]
+[gd_scene load_steps=12 format=3 uid="uid://dudsjfcopmc3f"]
 
-[ext_resource type="PackedScene" uid="uid://c8lquwg48v6w7" path="res://assets/pet_dice/models/jellyfish.glb" id="1_1kytu"]
-[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_lfy4x"]
-[ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_ll10o"]
-[ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="2_d5aoj"]
-[ext_resource type="PackedScene" uid="uid://dx4kfrbdfedgy" path="res://assets/pet_dice/d8_faces.tscn" id="5_dtl2j"]
-[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="6_ekygq"]
-[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="7_pvbco"]
+[ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_4p5w3"]
+[ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_at2ng"]
+[ext_resource type="PackedScene" uid="uid://o6x8qipkno2f" path="res://assets/pet_dice/models/wolf.glb" id="2_6hjxk"]
+[ext_resource type="PackedScene" uid="uid://d4a5r8atlqw42" path="res://assets/pet_dice/d4_faces.tscn" id="3_lqpxk"]
+[ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="3_pdwg0"]
+[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="5_4s6e5"]
+[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="6_u82ul"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdk2q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccjmi"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("6_ekygq")
+shader = ExtResource("5_4s6e5")
 shader_parameter/growth = 0.015
 shader_parameter/face_values = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
-shader_parameter/albedo_texture = ExtResource("7_pvbco")
+shader_parameter/albedo_texture = ExtResource("6_u82ul")
 
 [sub_resource type="Animation" id="Animation_6vpuk"]
 length = 0.916667
@@ -58,34 +58,29 @@ _data = {
 "shake": SubResource("Animation_dfb6j")
 }
 
-[node name="Jellyfish" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
-script = ExtResource("1_ll10o")
-die_type = 2
+[node name="Wolf" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
+script = ExtResource("1_4p5w3")
 roll_pivot = NodePath("LurchEmpty/RollMiddle/RollPivot")
 animation_player = NodePath("AnimationPlayer")
-number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/jellyfish/D8Faces")
+number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/wolf/D4Faces")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.415786, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250325, 0)
 
 [node name="RollPivot" type="Node3D" parent="LurchEmpty/RollMiddle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("1_lfy4x")
+script = ExtResource("1_at2ng")
 roll_time = 2.0
 
-[node name="jellyfish" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("1_1kytu")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+[node name="wolf" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("2_6hjxk")]
 
-[node name="Jellyfish_D8_002" parent="LurchEmpty/RollMiddle/RollPivot/jellyfish" index="0"]
-material_override = ExtResource("2_d5aoj")
+[node name="Wolf_D4" parent="LurchEmpty/RollMiddle/RollPivot/wolf" index="0"]
+material_override = ExtResource("3_pdwg0")
 
-[node name="D8Faces" parent="LurchEmpty/RollMiddle/RollPivot/jellyfish" instance=ExtResource("5_dtl2j")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_tdk2q")
-skeleton = NodePath("../..")
+[node name="D4Faces" parent="LurchEmpty/RollMiddle/RollPivot/wolf" instance=ExtResource("3_lqpxk")]
+material_override = SubResource("ShaderMaterial_ccjmi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../LurchEmpty")
@@ -93,4 +88,4 @@ libraries = {
 "": SubResource("AnimationLibrary_vhqpj")
 }
 
-[editable path="LurchEmpty/RollMiddle/RollPivot/jellyfish"]
+[editable path="LurchEmpty/RollMiddle/RollPivot/wolf"]
