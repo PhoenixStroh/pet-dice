@@ -13,6 +13,8 @@ signal pet_die_started_pet_turn(pet : PetDie)
 signal input_frozen_changed(new_is_frozen : bool)
 signal turn_state_changed(new_turn_state : TURN_STATE)
 
+signal turn_ended()
+
 signal game_ended(winner_indexes : Array[Valuation], valuations : Array[Valuation])
 
 enum MATCH_STATE {
@@ -106,6 +108,9 @@ func can_take_turn_roll() -> bool:
 	var cur_hand := get_cur_player_hand()
 	return turn_rolls_used < cur_hand.turn_rolls_allowed + cur_hand.additional_turn_rolls_allowed
 
+func can_declare_end() -> bool:
+	return match_state == MATCH_STATE.DURING and turn_index > 2
+
 #endregion
 
 func _on_pet_die_started_pet_turn(pet_die : PetDie):
@@ -165,6 +170,8 @@ func end_turn():
 		turn_index_since_declared += 1
 	
 	update_passives()
+	
+	turn_ended.emit()
 	
 	if turn_index_since_declared >= get_player_count():
 		match_state = MATCH_STATE.END

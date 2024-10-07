@@ -5,6 +5,10 @@ func _get_new_self() -> Resource:
 	return AbilityArmadillo.new()
 
 func perform_active_ability(cur_match : Match) -> bool:
+	if cur_pet_dice.current_face_value == 2:
+		cur_match.call_pet_shaken(cur_pet_dice)
+		return false
+	
 	cur_match.call_pet_constant_shaken(cur_pet_dice, true)
 	return true
 
