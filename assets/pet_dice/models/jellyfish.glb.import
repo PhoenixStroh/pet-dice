@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c8lquwg48v6w7"
-path="res://.godot/imported/Jellyfish.glb-8406564beb3739fc36dd9c5a7929df45.scn"
+path="res://.godot/imported/jellyfish.glb-a919bba0c9656cd9d46260cd5a00eab3.scn"
 
 [deps]
 
-source_file="res://assets/pet_dice/models/Jellyfish.glb"
-dest_files=["res://.godot/imported/Jellyfish.glb-8406564beb3739fc36dd9c5a7929df45.scn"]
+source_file="res://assets/pet_dice/models/jellyfish.glb"
+dest_files=["res://.godot/imported/jellyfish.glb-a919bba0c9656cd9d46260cd5a00eab3.scn"]
 
 [params]
 
