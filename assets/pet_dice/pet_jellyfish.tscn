@@ -13,6 +13,7 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_ekygq")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/growth = 0.015
 shader_parameter/face_values = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
 shader_parameter/albedo_texture = ExtResource("7_pvbco")
@@ -70,6 +71,7 @@ pet_ability_player = NodePath("PetAbilitySfx")
 pet_affected_player = NodePath("PetAffectedSfx")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.415786, 0)

@@ -470,15 +470,45 @@ text = "ENDING THE GAME"
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="PopUpMenu5" type="PanelContainer" parent="Screen3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -177.0
+offset_top = -230.0
+offset_right = 660.0
+offset_bottom = -73.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen3/PopUpMenu5"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen3/PopUpMenu5/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_right = 391.5
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "AFTER BOTH PLAYERS HAVE TAKEN AT LEAST 1 TURN, YOU MAY DECLARE YOUR HAND AND STOP THE GAME."
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [node name="PopUpMenu2" type="PanelContainer" parent="Screen3"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -177.0
-offset_top = -140.0
+offset_top = -21.0
 offset_right = 660.0
-offset_bottom = 59.0
+offset_bottom = 178.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
 
@@ -490,13 +520,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -391.0
-offset_right = 391.0
+offset_left = -402.5
+offset_right = 402.5
 offset_bottom = 349.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_gs0fq")
 theme_override_font_sizes/font_size = 36
-text = "DURING YOUR TURN, YOU CAN DECLARE YOUR HAND. YOU AND YOUR OPPONENT WILL EACH GET 1 MORE ROLL TO BUILD A BETTER HAND OR RUIN THEIR OPPONENT'S HAND."
+text = "DURING THE START OF TURN, YOU CAN DECLARE YOUR HAND. YOU AND YOUR OPPONENT WILL EACH GET 1 MORE ROLL TO BUILD A BETTER HAND OR RUIN THEIR OPPONENT'S HAND."
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -506,9 +536,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -177.0
-offset_top = 97.0
+offset_top = 237.0
 offset_right = 660.0
-offset_bottom = 223.0
+offset_bottom = 363.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
 

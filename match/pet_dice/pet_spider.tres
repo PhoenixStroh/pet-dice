@@ -5,8 +5,8 @@
 
 [sub_resource type="Resource" id="Resource_ehy8y"]
 script = ExtResource("1_hd8jc")
-ability_text = "This is the default ability text."
-is_ability_forced = false
+ability_text = "When rolled, you must choose an opponent's pet to lock (locked pets cannot be rolled)"
+is_ability_forced = true
 
 [resource]
 script = ExtResource("1_rhkor")

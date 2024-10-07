@@ -32,17 +32,20 @@ func _ready() -> void:
 func _on_end_turn_button_pressed():
 	var action := Action.new()
 	action.ending_turn = true
-	process_action(action)
+	if is_users_turn():
+		process_action(action)
 
 func _on_declare_end_button_pressed():
 	var action := Action.new()
 	action.declared_end = true
-	process_action(action)
+	if is_users_turn():
+		process_action(action)
 
 func _on_pet_die_interacted(pet_die : PetDie):
 	var action = Action.new()
 	action.selected_pet = pet_die
-	process_action(action)
+	if is_users_turn():
+		process_action(action)
 
 func _on_pet_die_rolled(pet_die : PetDie):
 	print("rolled ", pet_die)
@@ -80,8 +83,151 @@ func _on_input_frozen_changed(_is_input_frozen : bool):
 func _on_turn_state_changed(_new_turn_state : Match.TURN_STATE):
 	_set_end_button_disabled()
 
+func _is_ai_hand_good_enough() -> bool:
+	var ai_hand := cur_match.get_player_hand(1)
+	var player_hand := cur_match.get_player_hand(0)
+	
+	var ai_val := cur_match.valuate_hand(ai_hand)
+	var player_val := cur_match.valuate_hand(player_hand)
+	
+	var comparison := ai_val.is_this_valuation_better(player_val)
+	if comparison == -1:
+		print("ai hand is currently better")
+		if ai_val.hand_pattern > Valuation.HAND_PATTERN.HIGHEST_NUMBER:
+			return true
+	print("ai hand is not better")
+	return false
+
+func _on_turn_ended():
+	if not is_users_turn():
+		print("AI TURN!")
+		_set_end_button_disabled()
+		
+		await get_tree().create_timer(0.3).timeout
+		
+		match cur_match.match_state:
+			Match.MATCH_STATE.DRAFT:
+				var action := Action.new()
+				action.selected_pet = cur_match.get_center_hand().get_pets().pick_random()
+				process_action(action)
+			Match.MATCH_STATE.DURING:
+				if not cur_match.can_take_turn_roll():
+					var action := Action.new()
+					action.ending_turn = true
+					process_action(action)
+					return
+
+				if cur_match.can_declare_end() and _is_ai_hand_good_enough():
+					var declare_action := Action.new()
+					declare_action.declared_end = true
+					process_action(declare_action)
+					
+					await get_tree().create_timer(0.3).timeout
+					
+					var end_turn_action := Action.new()
+					end_turn_action.ending_turn = true
+					process_action(end_turn_action)
+				else:
+					var action := Action.new()
+					while true:
+						var pet : PetDie = cur_match.get_center_hand().get_pets().pick_random()
+						if not pet.is_locked:
+							action.selected_pet = pet
+							break
+					
+					process_action(action)
+					
+					await get_tree().create_timer(2.3).timeout
+					
+					match action.selected_pet.name:
+						"Armadillo":
+							print("ai armadillo")
+							if cur_match.turn_state == Match.TURN_STATE.TURN_ACTION:
+								await get_tree().create_timer(1.0).timeout
+								_on_turn_ended()
+								return
+							if cur_match.turn_state == Match.TURN_STATE.PET_ACTION:
+								for i in range(randi() % 3 + 1):
+									if cur_match.turn_state == Match.TURN_STATE.TURN_ACTION:
+										await get_tree().create_timer(1.0).timeout
+										_on_turn_ended()
+										return
+									if cur_match.turn_state == Match.TURN_STATE.PET_ACTION:
+										process_action(action)
+										await get_tree().create_timer(2.3).timeout
+							
+							action.selected_pet = null
+							action.declared_end = true
+							process_action(action)
+							await get_tree().create_timer(1.0).timeout
+							_on_turn_ended()
+							return
+						"Sheep":
+							print("ai sheep")
+							if cur_match.turn_state == Match.TURN_STATE.TURN_ACTION:
+								await get_tree().create_timer(1.0).timeout
+								_on_turn_ended()
+								return
+							if cur_match.turn_state == Match.TURN_STATE.PET_ACTION:
+								action.selected_pet = cur_match.get_player_hand(0).get_pets().pick_random()
+								
+								process_action(action)
+								await get_tree().create_timer(1.0).timeout
+								_on_turn_ended()
+								return
+						"Magpie":
+							print("ai magpie")
+							action.selected_pet = cur_match.get_player_hand(0).get_pets().pick_random()
+							
+							process_action(action)
+							await get_tree().create_timer(1.0).timeout
+							_on_turn_ended()
+							return
+						
+						"Spider":
+							print("ai spider")
+							if cur_match.turn_state == Match.TURN_STATE.TURN_ACTION:
+								await get_tree().create_timer(1.0).timeout
+								_on_turn_ended()
+								return
+							if cur_match.turn_state == Match.TURN_STATE.PET_ACTION:
+								while true:
+									var pet = cur_match.get_player_hand(0).get_pets().pick_random()
+									
+									if not pet.is_locked:
+										action.selected_pet = pet
+										process_action(action)
+										await get_tree().create_timer(1.0).timeout
+										_on_turn_ended()
+										return
+						
+						"Jellyfish":
+							print("ai jellyfish")
+							if cur_match.turn_state == Match.TURN_STATE.TURN_ACTION:
+								await get_tree().create_timer(1.0).timeout
+								_on_turn_ended()
+								return
+							if cur_match.turn_state == Match.TURN_STATE.PET_ACTION:
+								while true:
+									var pet = cur_match.get_player_hand(0).get_pets().pick_random()
+									
+									if not pet.is_locked:
+										action.selected_pet = pet
+										process_action(action)
+										await get_tree().create_timer(3.0).timeout
+										_on_turn_ended()
+										return
+						_:
+							print("ai something")
+							process_action(action)
+							await get_tree().create_timer(2.0).timeout
+							_on_turn_ended()
+							return
+
 func _set_end_button_disabled():
-	end_turn_button.disabled = cur_match.is_input_frozen or cur_match.turn_state == Match.TURN_STATE.PET_ACTION
+	end_turn_button.disabled = (cur_match.is_input_frozen or cur_match.turn_state == Match.TURN_STATE.PET_ACTION) or not is_users_turn()
+	if not is_users_turn():
+		declare_end_button.disabled = true
 
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
@@ -91,7 +237,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		var action = Action.new()
 		action.stop_current_action = true
-		process_action(action)
+		if is_users_turn():
+			process_action(action)
 
 func setup():
 	cur_match = Match.new()
@@ -103,6 +250,7 @@ func setup():
 	cur_match.pet_die_updated.connect(_on_pet_die_updated)
 	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
 	cur_match.game_ended.connect(_on_game_ended)
+	cur_match.turn_ended.connect(_on_turn_ended)
 	
 	cur_match.input_frozen_changed.connect(_on_input_frozen_changed)
 	cur_match.turn_state_changed.connect(_on_turn_state_changed)
@@ -112,6 +260,9 @@ func setup():
 	board.setup(cur_match.get_center_hand())
 	
 	cur_match.start_draft()
+
+func is_users_turn() -> bool:
+	return not PreMatchData.playing_with_ai or (cur_match.get_whos_turn() == 0)
 
 func process_action(action : Action):
 	# Draft Actions
@@ -184,6 +335,10 @@ func action_draft_pet(pet_die : PetDie):
 		whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
 		board.board_hands[0].spacing = 2.0
 		board.board_hands[0].space_hand()
+		
+		if PreMatchData.playing_with_ai:
+			await get_tree().create_timer(2.1).timeout
+			_on_turn_ended()
 
 func action_roll_dice(pet_die : PetDie):
 	cur_match.is_input_frozen = true
@@ -197,11 +352,16 @@ func action_roll_dice(pet_die : PetDie):
 
 func action_end_turn():
 	cur_match.end_turn()
-	declare_end_button.disabled = false
+	if cur_match.can_declare_end() and not cur_match.end_declared:
+		declare_end_button.disabled = false
+	else:
+		declare_end_button.disabled = true
 	
 	whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
 	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())
+	_set_end_button_disabled()
 
 func action_declare_end():
 	cur_match.end_declared = true
 	last_turn_panel.visible = true
+	declare_end_button.disabled = true
