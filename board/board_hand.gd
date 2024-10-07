@@ -4,7 +4,7 @@ extends Node3D
 signal dice_hold_interacted(pet_die : PetDie)
 signal pet_dice_hover_changed(is_hovering : bool, pet_die : PetDie)
 
-var spacing := 2.0
+@export var spacing := 2.0
 
 var dice_hold_scene : PackedScene
 
@@ -48,4 +48,4 @@ func remove_pet(pet_die : PetDie):
 func space_hand():
 	for i in dice_holds.size():
 		var dice_hold = dice_holds[i]
-		dice_hold.position.x = (-dice_holds.size()) + 1 + (spacing * i)
+		dice_hold.position.x = (-spacing * .5 * (dice_holds.size() - 1)) + (spacing * i)

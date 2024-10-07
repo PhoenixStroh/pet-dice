@@ -146,6 +146,8 @@ func action_draft_pet(pet_die : PetDie):
 				dice_hold.update_label()
 		
 		whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
+		board.board_hands[0].spacing = 2.0
+		board.board_hands[0].space_hand()
 
 func action_roll_dice(pet_die : PetDie):
 	cur_match.is_input_frozen = true

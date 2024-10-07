@@ -33,7 +33,7 @@ sky_material = SubResource("ProceduralSkyMaterial_b3rew")
 
 [sub_resource type="Environment" id="Environment_vsr34"]
 background_mode = 1
-background_color = Color(0, 0.419608, 0.364706, 1)
+background_color = Color(0.0930599, 0.490897, 0.501143, 1)
 sky = SubResource("Sky_4grd8")
 tonemap_mode = 2
 adjustment_enabled = true
@@ -104,6 +104,7 @@ pet_popup = NodePath("../CanvasLayer/Control/Popup")
 
 [node name="CenterHandPivot" type="Node3D" parent="Board"]
 script = ExtResource("10_2hok6")
+spacing = 1.2
 
 [node name="Player1HandPivot" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.035)

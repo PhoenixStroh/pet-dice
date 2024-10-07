@@ -3,8 +3,6 @@ extends Node3D
 
 signal pet_die_interacted(pet_die : PetDie)
 
-@export var spacing := 2.0
-
 @export var dice_hold_scene : PackedScene
 
 @export var board_hands : Array[BoardHand]
