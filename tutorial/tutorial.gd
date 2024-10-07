@@ -3,6 +3,8 @@ extends Control
 @export var screens : Array[Control]
 @export_file(".tscn") var next_scene : String
 
+@export var continue_player : AudioStreamPlayer
+
 var cur_index := 0
 
 func _input(event: InputEvent) -> void:
@@ -11,5 +13,6 @@ func _input(event: InputEvent) -> void:
 		if cur_index < screens.size():
 			screens[cur_index - 1].visible = false
 			screens[cur_index].visible = true
+			continue_player.play()
 		else:
 			get_tree().change_scene_to_file(next_scene)

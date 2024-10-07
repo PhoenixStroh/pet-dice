@@ -1,11 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb7j3gfl8ipim"]
+[gd_scene load_steps=15 format=3 uid="uid://bb7j3gfl8ipim"]
 
 [ext_resource type="Script" path="res://pet_selection/pet_button_listener.gd" id="1_bu8cn"]
+[ext_resource type="Theme" uid="uid://m8kn0djrek6m" path="res://assets/themes/default_theme.tres" id="1_rupjl"]
 [ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="2_85ia7"]
+[ext_resource type="StyleBox" uid="uid://q4d1u7x0bapr" path="res://assets/style_elements/basic_panel_disabled.tres" id="2_msu8n"]
 [ext_resource type="Resource" uid="uid://c50xwslvj58mq" path="res://match/pet_dice/pet_armadillo.tres" id="3_1x61n"]
 [ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="3_77nj4"]
+[ext_resource type="StyleBox" uid="uid://mqexvcb756x2" path="res://assets/style_elements/basic_panel_hover.tres" id="3_hfhbp"]
 [ext_resource type="Resource" uid="uid://dg2mml1j85re0" path="res://match/pet_dice/pet_magpie.tres" id="4_h011r"]
+[ext_resource type="StyleBox" uid="uid://bmjxampkrfadl" path="res://assets/style_elements/basic_panel_pressed.tres" id="4_hqh4w"]
 [ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="5_2wb0s"]
+[ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="5_sd78h"]
+[ext_resource type="PackedScene" uid="uid://df7spb38g1bni" path="res://universal/button_sfx.tscn" id="7_0kd67"]
 [ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="7_tkrgh"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="8_e2kdd"]
 
@@ -16,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_rupjl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -57,56 +64,110 @@ continue_button = NodePath("../../../../Continue")
 [node name="MouseButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 text = "MOUSE"
 metadata/pet = ExtResource("2_85ia7")
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/MouseButton" instance=ExtResource("7_0kd67")]
 
 [node name="ElephantButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 disabled = true
 text = "Elephant"
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/ElephantButton" instance=ExtResource("7_0kd67")]
 
 [node name="ArmadilloButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 text = "Armadillo"
 metadata/pet = ExtResource("3_1x61n")
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/ArmadilloButton" instance=ExtResource("7_0kd67")]
 
 [node name="JellyfishButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 text = "Jellyfish"
 metadata/pet = ExtResource("3_77nj4")
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/JellyfishButton" instance=ExtResource("7_0kd67")]
 
 [node name="MagpieButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 text = "Magpie"
 metadata/pet = ExtResource("4_h011r")
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/MagpieButton" instance=ExtResource("7_0kd67")]
 
 [node name="SheepButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 disabled = true
 text = "Sheep"
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/SheepButton" instance=ExtResource("7_0kd67")]
 
 [node name="WolfButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 text = "Wolf"
 metadata/pet = ExtResource("5_2wb0s")
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/WolfButton" instance=ExtResource("7_0kd67")]
 
 [node name="SpiderButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 disabled = true
 text = "Spider"
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/SpiderButton" instance=ExtResource("7_0kd67")]
 
 [node name="AntButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/disabled = ExtResource("2_msu8n")
+theme_override_styles/hover = ExtResource("3_hfhbp")
+theme_override_styles/pressed = ExtResource("4_hqh4w")
+theme_override_styles/normal = ExtResource("5_sd78h")
 text = "Ant"
 metadata/pet = ExtResource("7_tkrgh")
+
+[node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/AntButton" instance=ExtResource("7_0kd67")]
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 1
@@ -115,10 +176,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -356.0
-offset_top = -152.0
-offset_right = -103.0
-offset_bottom = -57.0
+offset_left = -339.0
+offset_top = -122.0
+offset_right = -91.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
 disabled = true

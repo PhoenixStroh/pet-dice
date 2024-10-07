@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://df7spb38g1bni"]
+
+[ext_resource type="AudioStream" uid="uid://v5ds04gvomxw" path="res://assets/sound/BlipSelect.wav" id="1_w5g1m"]
+[ext_resource type="Script" path="res://universal/button_sfx.gd" id="2_845xk"]
+
+[node name="ButtonSfx" type="AudioStreamPlayer"]
+stream = ExtResource("1_w5g1m")
+script = ExtResource("2_845xk")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://mwt80ux4ar5b"]
+[gd_scene load_steps=28 format=3 uid="uid://mwt80ux4ar5b"]
 
 [ext_resource type="Script" path="res://match/match_director.gd" id="1_d4qhh"]
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="2_bc6af"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://match/hand_panel.gd" id="11_871i5"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="11_jbfl2"]
 [ext_resource type="Script" path="res://match/end_game_panel.gd" id="12_rf6ex"]
+[ext_resource type="PackedScene" uid="uid://df7spb38g1bni" path="res://universal/button_sfx.tscn" id="13_0q0iu"]
 [ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="16_1rbcj"]
 [ext_resource type="PackedScene" uid="uid://dgtkxhbx07l17" path="res://match/popup.tscn" id="16_3vddt"]
 [ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="17_cuk3x"]
@@ -152,6 +153,8 @@ grow_vertical = 0
 text = "End Turn"
 metadata/_edit_use_anchors_ = true
 
+[node name="ButtonSfx" parent="CanvasLayer/Control/MatchButtons/EndTurnButton" instance=ExtResource("13_0q0iu")]
+
 [node name="DeclareEndButton" type="Button" parent="CanvasLayer/Control/MatchButtons"]
 layout_mode = 1
 anchors_preset = 3
@@ -167,6 +170,8 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Declare End"
 metadata/_edit_use_anchors_ = true
+
+[node name="ButtonSfx" parent="CanvasLayer/Control/MatchButtons/DeclareEndButton" instance=ExtResource("13_0q0iu")]
 
 [node name="EndGameButtons" type="Control" parent="CanvasLayer/Control"]
 visible = false
