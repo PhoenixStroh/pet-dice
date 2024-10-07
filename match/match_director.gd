@@ -7,6 +7,11 @@ extends Node
 @export var end_turn_button : Button
 @export var declare_end_button : Button
 
+@export var last_turn_panel : Control
+@export var rolls_remaining_label : Label
+@export var whos_turn_label : Label
+@export var end_game_panel : EndGamePanel
+
 var cur_match : Match
 
 func _ready() -> void:
@@ -14,6 +19,8 @@ func _ready() -> void:
 	
 	end_turn_button.pressed.connect(_on_end_turn_button_pressed)
 	declare_end_button.pressed.connect(_on_declare_end_button_pressed)
+	
+	starting_pets = PreMatchData.pets_selected
 	
 	for i in starting_pets.size():
 		var starting_pet := starting_pets[i]
@@ -53,6 +60,11 @@ func _on_pet_die_lurched(pet_die : PetDie):
 func _on_pet_die_shaken(pet_die : PetDie):
 	board.shake_pet(pet_die)
 
+func _on_game_ended(winner_valuations : Array[Valuation], valuations : Array[Valuation]):
+	last_turn_panel.visible = false
+	if end_game_panel:
+		end_game_panel.display_end(winner_valuations, valuations)
+
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("restart"):
@@ -65,6 +77,7 @@ func setup():
 	cur_match.pet_die_shaken.connect(_on_pet_die_shaken)
 	cur_match.pet_die_updated.connect(_on_pet_die_updated)
 	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
+	cur_match.game_ended.connect(_on_game_ended)
 	
 	# Setup
 	cur_match.setup(starting_pets)
@@ -121,23 +134,36 @@ func action_draft_pet(pet_die : PetDie):
 	
 	# check if end of draft
 	cur_match.end_turn()
+	
+	whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
+	
 	if cur_match.turn_index >= cur_match.get_draft_turn_legnth():
 		cur_match.start_during()
+		end_game_panel.match_buttons.visible = true
+		rolls_remaining_label.text = str(cur_match.get_rolls_remaining())
 		for board_hand in board.board_hands:
 			for dice_hold in board_hand.dice_holds:
 				dice_hold.update_label()
+		
+		whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
 
 func action_roll_dice(pet_die : PetDie):
 	cur_match.is_input_frozen = true
 	
+	declare_end_button.visible = false
 	await cur_match.roll_pet(pet_die, true)
+	
+	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())
 	
 	cur_match.is_input_frozen = false
 
 func action_end_turn():
 	cur_match.end_turn()
-	print("chose to end turn")
+	declare_end_button.visible = true
+	
+	whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
+	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())
 
 func action_declare_end():
 	cur_match.end_declared = true
-	print("end declared")
+	last_turn_panel.visible = true

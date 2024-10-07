@@ -17,6 +17,8 @@ func _on_button_pressed(button : Button):
 	if pet_die and pet_die is PetDie:
 		selected_pets.append(pet_die)
 		if selected_pets.size() >= 6:
+			PreMatchData.pets_selected = selected_pets
+			
 			for child in get_children():
 				if child is Button:
 					child.disabled = true

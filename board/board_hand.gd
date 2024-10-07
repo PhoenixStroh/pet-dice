@@ -2,6 +2,7 @@ class_name BoardHand
 extends Node3D
 
 signal dice_hold_interacted(pet_die : PetDie)
+signal pet_dice_hover_changed(is_hovering : bool, pet_die : PetDie)
 
 var spacing := 2.0
 
@@ -26,6 +27,7 @@ func add_pet(pet_die : PetDie) -> DiceHold:
 	dice_hold_instance.pet_die = pet_die
 	
 	dice_hold_instance.interacted.connect(dice_hold_interacted.emit.bind(pet_die))
+	dice_hold_instance.hover_changed.connect(pet_dice_hover_changed.emit.bind(pet_die))
 	
 	dice_holds.append(dice_hold_instance)
 	add_child(dice_hold_instance)

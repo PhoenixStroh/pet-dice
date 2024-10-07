@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhx0jpe2fp7nf"]
+
+[ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="1_5chy5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2som"]
+bg_color = Color(0.0920163, 0.129814, 0.504077, 1)
+border_width_left = 5
+border_width_top = 10
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0.930372, 0.823254, 0.76898, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0.0965671, 0.0901858, 0.293073, 0.411765)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 397.0
+offset_bottom = 125.0
+
+[node name="EndTurnButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 373.0
+offset_bottom = 109.0
+theme_override_fonts/font = ExtResource("1_5chy5")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_h2som")
+text = "END TURN"
+
+[node name="DeclareHandButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = 119.0
+offset_right = 373.0
+offset_bottom = 228.0
+theme_override_fonts/font = ExtResource("1_5chy5")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_h2som")
+text = "DECLARE HAND"

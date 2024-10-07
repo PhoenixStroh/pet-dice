@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb7j3gfl8ipim"]
+[gd_scene load_steps=10 format=3 uid="uid://bb7j3gfl8ipim"]
 
 [ext_resource type="Script" path="res://pet_selection/pet_button_listener.gd" id="1_bu8cn"]
 [ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="2_85ia7"]
+[ext_resource type="Resource" uid="uid://c50xwslvj58mq" path="res://match/pet_dice/pet_armadillo.tres" id="3_1x61n"]
 [ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="3_77nj4"]
 [ext_resource type="Resource" uid="uid://dg2mml1j85re0" path="res://match/pet_dice/pet_magpie.tres" id="4_h011r"]
 [ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="5_2wb0s"]
-[ext_resource type="Script" path="res://match/pet_dice/ability_ant.gd" id="6_40es1"]
+[ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="7_tkrgh"]
+[ext_resource type="Script" path="res://pet_selection/continue.gd" id="8_e2kdd"]
+[ext_resource type="PackedScene" uid="uid://mwt80ux4ar5b" path="res://match/match.tscn" id="9_ue1j5"]
 
 [node name="PetSelection" type="Control"]
 layout_mode = 3
@@ -63,14 +66,12 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 disabled = true
 text = "Elephant"
-metadata/pet = null
 
 [node name="ArmadilloButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-disabled = true
 text = "Armadillo"
-metadata/pet = null
+metadata/pet = ExtResource("3_1x61n")
 
 [node name="JellyfishButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
@@ -89,7 +90,6 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 disabled = true
 text = "Sheep"
-metadata/pet = null
 
 [node name="WolfButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
@@ -102,13 +102,12 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 disabled = true
 text = "Spider"
-metadata/pet = null
 
 [node name="AntButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "Ant"
-metadata/pet = ExtResource("6_40es1")
+metadata/pet = ExtResource("7_tkrgh")
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 1
@@ -125,3 +124,5 @@ grow_horizontal = 0
 grow_vertical = 0
 disabled = true
 text = "Continue"
+script = ExtResource("8_e2kdd")
+next_scene = ExtResource("9_ue1j5")

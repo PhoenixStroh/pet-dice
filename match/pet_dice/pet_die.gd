@@ -42,7 +42,8 @@ var _current_face_index := 0 :
 var is_locked := false
 
 func setup():
-	ability.cur_pet_dice = self
+	if ability:
+		ability.cur_pet_dice = self
 
 func duplicate_fixed() -> PetDie:
 	var pet_die := PetDie.new()

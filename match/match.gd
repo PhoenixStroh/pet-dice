@@ -8,6 +8,8 @@ signal pet_die_lurched(pet_die : PetDie)
 signal pet_die_shaken(pet_die : PetDie)
 signal pet_die_started_pet_turn(pet : PetDie)
 
+signal game_ended(winner_indexes : Array[Valuation], valuations : Array[Valuation])
+
 enum MATCH_STATE {
 	SETUP,
 	DRAFT,
@@ -30,6 +32,8 @@ var turn_rolls_used := 0
 var end_declared := false
 var turn_index_since_declared := 0
 var _player_count := 2
+
+var has_rolled_this_turn := false
 
 var cur_pet_dice : PetDie
 
@@ -82,6 +86,10 @@ func is_pet_in_cur_player(pet_die : PetDie) -> bool:
 
 func is_pet_in_cur_player_or_center(pet_die : PetDie) -> bool:
 	return is_pet_in_center(pet_die) or is_pet_in_cur_player(pet_die)
+
+func get_rolls_remaining() -> int:
+	var cur_hand := get_cur_player_hand()
+	return maxi(cur_hand.turn_rolls_allowed + cur_hand.additional_turn_rolls_allowed - turn_rolls_used, 0)
 
 func can_take_turn_roll() -> bool:
 	var cur_hand := get_cur_player_hand()
@@ -136,16 +144,18 @@ func end_pet_turn():
 func end_turn():
 	turn_index += 1
 	turn_rolls_used = 0
+	has_rolled_this_turn = false
 	if end_declared:
 		turn_index_since_declared += 1
 	
 	if turn_index_since_declared >= get_player_count():
 		match_state = MATCH_STATE.END
-		print("GAME END")
 		
 		var best_players : Array[Valuation]
+		var valuations : Array[Valuation]
 		for i in get_player_count():
 			var valuation := valuate_hand(get_player_hand(i))
+			valuations.append(valuation)
 			
 			if best_players.size() == 0:
 				best_players.append(valuation)
@@ -167,10 +177,13 @@ func end_turn():
 			for best_player in best_players:
 				var valuation := best_player
 				print("Player #%s had a %s" % [valuation.player_index, valuation])
+		
+		game_ended.emit(best_players, valuations)
 
 func roll_pet(pet_die : PetDie, player_action := false):
 	if player_action:
 		turn_rolls_used += 1
+		has_rolled_this_turn = true
 	await pet_die.roll(player_action)
 
 func call_pet_updated(pet_die : PetDie):
