@@ -13,3 +13,4 @@ name = "Jellyfish"
 type = 2
 faces = Array[int]([1, 1, 2, 4, 4, 7, 8])
 ability = SubResource("Resource_cpe2g")
+visual_scene_path = "res://assets/pet_dice/pet_jellyfish.tscn"

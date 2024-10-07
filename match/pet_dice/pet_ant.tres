@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PetDie" load_steps=4 format=3 uid="uid://bmcs54pedlivy"]
+
+[ext_resource type="Script" path="res://match/pet_dice/ability_ant.gd" id="1_0jbob"]
+[ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="1_82oig"]
+
+[sub_resource type="Resource" id="Resource_k17cm"]
+script = ExtResource("1_0jbob")
+ability_text = "When rolled, the highest valued dice on the board are set to their lowest value"
+
+[resource]
+script = ExtResource("1_82oig")
+name = "Ant"
+type = 0
+faces = Array[int]([1, 2, 3, 4])
+ability = SubResource("Resource_k17cm")
+visual_scene_path = "res://assets/pet_dice/pet_ant.tscn"

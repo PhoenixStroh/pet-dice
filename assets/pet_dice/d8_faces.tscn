@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx4kfrbdfedgy"]
+
+[ext_resource type="Material" uid="uid://cehpmd1qjr5rx" path="res://assets/pet_dice/face_mat.tres" id="1_riid6"]
+[ext_resource type="ArrayMesh" uid="uid://b2sjpjgmbpbr0" path="res://assets/pet_dice/models/d8_faces_mesh.res" id="2_vaxq7"]
+
+[node name="D8Faces" type="MeshInstance3D"]
+material_override = ExtResource("1_riid6")
+mesh = ExtResource("2_vaxq7")

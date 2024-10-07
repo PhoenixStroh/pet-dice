@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cll3rdfltyl5r"]
+
+[ext_resource type="Shader" path="res://assets/pet_dice/pet_dice.gdshader" id="1_k5qtj"]
+[ext_resource type="Texture2D" uid="uid://drdxqp4ft8p4o" path="res://assets/pet_dice/PetsTexture.png" id="2_qj2uf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_k5qtj")
+shader_parameter/albedo_texture = ExtResource("2_qj2uf")

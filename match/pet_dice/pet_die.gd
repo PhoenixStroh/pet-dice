@@ -14,7 +14,7 @@ enum DICE_TYPE {
 }
 
 const DICE_TYPE_SIZE := {
-	DICE_TYPE.D4 : 3,
+	DICE_TYPE.D4 : 4,
 	DICE_TYPE.D6 : 5,
 	DICE_TYPE.D8 : 7,
 }
@@ -30,12 +30,15 @@ const DICE_TYPE_NAME := {
 @export var faces : Array[int] = []
 @export var ability : Ability
 
+@export_file("*.tscn") var visual_scene_path : String
+
 var current_face_value : int :
 	get():
 		return faces[_current_face_index]
 var _current_face_index := 0 :
 	set(value):
 		_current_face_index = clampi(value, 0, get_dice_size() - 1)
+
 var is_locked := false
 
 func setup():
@@ -49,6 +52,7 @@ func duplicate_fixed() -> PetDie:
 	pet_die.faces = faces.duplicate(true)
 	if ability:
 		pet_die.ability = ability.duplicate_fixed()
+	pet_die.visual_scene_path = visual_scene_path
 	pet_die._current_face_index = _current_face_index
 	pet_die.is_locked = is_locked
 	
@@ -72,19 +76,29 @@ var pet_index := -1
 func get_dice_size() -> int:
 	return DICE_TYPE_SIZE[type]
 
+func get_current_face_index() -> int:
+	return _current_face_index
+
 func passive_ability():
 	pass
 
 func active_ability():
 	pass
 
+func set_current_face(face_index : int):
+	_current_face_index = face_index
+
 func roll(player_action := false):
 	var index := randi() % get_dice_size()
 	_current_face_index = index
 	rolled.emit()
 	
+	await Utils.create_timer(2.0 + 0.1).timeout
+	
 	if ability and player_action:
-		var is_start_pet_turn := ability.perform_active_ability(cur_hand.cur_match)
+		@warning_ignore("redundant_await")
+		var is_start_pet_turn := await ability.perform_active_ability(cur_hand.cur_match)
+		
 		if is_start_pet_turn:
 			started_pet_turn.emit()
 

@@ -2,6 +2,10 @@ class_name Match
 extends Resource
 
 signal pet_die_rolled(pet_die : PetDie)
+signal pet_die_moved_to_hand(pet_die : PetDie, hand : Hand)
+signal pet_die_updated(pet_die : PetDie)
+signal pet_die_lurched(pet_die : PetDie)
+signal pet_die_shaken(pet_die : PetDie)
 signal pet_die_started_pet_turn(pet : PetDie)
 
 enum MATCH_STATE {
@@ -20,6 +24,7 @@ enum TURN_STATE {
 
 var match_state : MATCH_STATE = MATCH_STATE.SETUP
 var turn_state : TURN_STATE = TURN_STATE.TURN_ACTION
+var is_input_frozen := false
 var turn_index := 0
 var turn_rolls_used := 0
 var end_declared := false
@@ -97,6 +102,7 @@ func setup(s_starting_pets : Array[PetDie], s_player_count := 2):
 	
 	for i in range(1 + get_player_count()):
 		var hand := Hand.new()
+		hand.pet_die_moved_to.connect(pet_die_moved_to_hand.emit.bind(hand))
 		hand.hand_index = i
 		hand.cur_match = self
 		_hands.append(hand)
@@ -163,9 +169,18 @@ func end_turn():
 				print("Player #%s had a %s" % [valuation.player_index, valuation])
 
 func roll_pet(pet_die : PetDie, player_action := false):
-	pet_die.roll(player_action)
 	if player_action:
 		turn_rolls_used += 1
+	await pet_die.roll(player_action)
+
+func call_pet_updated(pet_die : PetDie):
+	pet_die_updated.emit(pet_die)
+
+func call_pet_lurched(pet_die : PetDie):
+	pet_die_lurched.emit(pet_die)
+
+func call_pet_shaken(pet_die : PetDie):
+	pet_die_shaken.emit(pet_die)
 
 func update_passives():
 	for hand in get_hands():

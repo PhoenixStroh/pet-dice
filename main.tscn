@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcp8spyvt7omj"]
+[gd_scene load_steps=16 format=3 uid="uid://dcp8spyvt7omj"]
 
 [ext_resource type="PackedScene" uid="uid://cf42aj12nfv8c" path="res://board/dice_hold.tscn" id="1_37jhy"]
 [ext_resource type="Script" path="res://board/board.gd" id="1_oks61"]
 [ext_resource type="Script" path="res://board/board_hand.gd" id="3_jfjm0"]
 [ext_resource type="Script" path="res://match/match_director.gd" id="3_y7ne3"]
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="4_2v2k0"]
+[ext_resource type="Resource" uid="uid://dg2mml1j85re0" path="res://match/pet_dice/pet_magpie.tres" id="4_pxfxd"]
 [ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="5_fdyh0"]
+[ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="6_sw17t"]
 [ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="6_wxms1"]
 [ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="7_w7wry"]
 
@@ -31,7 +33,7 @@ size = Vector3(10, 0.2, 5)
 
 [node name="MatchDirector" type="Node" parent="." node_paths=PackedStringArray("board", "end_turn_button", "declare_end_button")]
 script = ExtResource("3_y7ne3")
-starting_pets = Array[ExtResource("4_2v2k0")]([ExtResource("5_fdyh0"), ExtResource("5_fdyh0"), ExtResource("6_wxms1"), ExtResource("6_wxms1"), ExtResource("7_w7wry"), ExtResource("7_w7wry")])
+starting_pets = Array[ExtResource("4_2v2k0")]([ExtResource("5_fdyh0"), ExtResource("4_pxfxd"), ExtResource("6_wxms1"), ExtResource("6_sw17t"), ExtResource("7_w7wry"), ExtResource("7_w7wry")])
 board = NodePath("../Board")
 end_turn_button = NodePath("../CanvasLayer/Control/EndTurnButton")
 declare_end_button = NodePath("../CanvasLayer/Control/DeclareEndButton")
@@ -44,7 +46,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.10233, 3.04188)
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
 
 [node name="TableMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -60,11 +62,11 @@ board_hands = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePa
 script = ExtResource("3_jfjm0")
 
 [node name="Player1HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642)
 script = ExtResource("3_jfjm0")
 
 [node name="Player2HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7496)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.57091)
 script = ExtResource("3_jfjm0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
