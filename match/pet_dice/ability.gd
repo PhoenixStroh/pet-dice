@@ -2,6 +2,7 @@ class_name Ability
 extends Resource
 
 @export var ability_text := "This is the default ability text."
+@export var is_ability_forced := false
 
 var cur_pet_dice : PetDie
 

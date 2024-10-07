@@ -81,6 +81,11 @@ func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("restart"):
 			get_tree().reload_current_scene()
+	
+	if event.is_action_pressed("cancel"):
+		var action = Action.new()
+		action.stop_current_action = true
+		process_action(action)
 
 func setup():
 	cur_match = Match.new()
@@ -134,9 +139,16 @@ func _process_turn_action(action : Action):
 			action_declare_end()
 
 func _process_pet_action(action : Action):
+	if action.stop_current_action:
+		if cur_match.cur_pet_dice:
+			if cur_match.cur_pet_dice.ability:
+				if not cur_match.cur_pet_dice.ability.is_ability_forced:
+					cur_match.end_pet_turn()
+					return
+	
 	var pet_ability_finished := cur_match.get_cur_ability().process_pet_action(cur_match, action)
 	if pet_ability_finished:
-		cur_match.turn_state = cur_match.TURN_STATE.TURN_ACTION
+		cur_match.end_pet_turn()
 
 func action_draft_pet(pet_die : PetDie):
 	print(pet_die)
