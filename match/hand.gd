@@ -56,7 +56,8 @@ func move_pet_to_hand(pet : PetDie, hand : Hand):
 
 func roll_all_pets():
 	for pet in get_pets():
-		pet.roll()
+		if not pet.is_locked:
+			pet.roll()
 
 func get_hand_size() -> int:
 	return _pets.size()

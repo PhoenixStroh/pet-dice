@@ -16,4 +16,4 @@ faces = Array[int]([1, 1, 2, 2, 3])
 ability = SubResource("Resource_1dv8l")
 default_sfx_path = ""
 affected_sfx_path = "res://assets/sound/AffectedHighPitch.wav"
-visual_scene_path = "res://assets/pet_dice/pet_armadillo.tscn"
+visual_scene_path = "res://assets/pet_dice/pet_mouse.tscn"

@@ -136,9 +136,10 @@ func process_action(action : Action):
 
 func _process_turn_action(action : Action):
 	if action.selected_pet:
-		if cur_match.can_take_turn_roll():
-			if cur_match.is_pet_in_cur_player_or_center(action.selected_pet):
-				action_roll_dice(action.selected_pet)
+		if not action.selected_pet.is_locked:
+			if cur_match.can_take_turn_roll():
+				if cur_match.is_pet_in_cur_player_or_center(action.selected_pet):
+					action_roll_dice(action.selected_pet)
 	elif action.ending_turn:
 		action_end_turn()
 	elif action.declared_end:

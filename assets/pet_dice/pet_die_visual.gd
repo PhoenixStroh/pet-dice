@@ -19,6 +19,7 @@ func setup(pet_die : PetDie):
 
 func update(pet_die : PetDie):
 	roll_pivot.set_dice_rotation(die_type, pet_die.get_current_face_index())
+	update_faces(pet_die.faces)
 
 func update_faces(face_values : Array[int]):
 	var array := PackedInt32Array([0, 0, 0, 0, 0, 0, 0, 0])

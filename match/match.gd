@@ -154,9 +154,13 @@ func end_pet_turn():
 	cur_pet_dice = null
 
 func end_turn():
+	for pet in get_cur_player_hand().get_pets():
+		pet.is_locked = false
+	
 	turn_index += 1
 	turn_rolls_used = 0
 	has_rolled_this_turn = false
+	
 	if end_declared:
 		turn_index_since_declared += 1
 	
