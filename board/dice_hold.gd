@@ -67,13 +67,13 @@ func roll_to_index(index : int):
 	if roll_player:
 		roll_player.play()
 
-func play_lurch():
+func play_lurch(play_sound : bool):
 	if pet_die_visual:
-		pet_die_visual.play_lurch()
+		pet_die_visual.play_lurch(play_sound)
 
-func play_shake():
+func play_shake(play_sound : bool):
 	if pet_die_visual:
-		pet_die_visual.play_shake()
+		pet_die_visual.play_shake(play_sound)
 
 func play_ability_sfx():
 	if pet_die_visual:

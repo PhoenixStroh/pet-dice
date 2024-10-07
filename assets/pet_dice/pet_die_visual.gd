@@ -35,12 +35,12 @@ func play_ability_sfx():
 	if pet_ability_player:
 		pet_ability_player.play()
 
-func play_lurch():
+func play_lurch(play_sound : bool):
 	animation_player.play("lurch")
-	if pet_ability_player:
+	if pet_ability_player and play_sound:
 		pet_ability_player.play()
 
-func play_shake():
+func play_shake(play_sound : bool):
 	animation_player.play("shake")
-	if pet_affected_player:
+	if pet_affected_player and play_sound:
 		pet_affected_player.play()

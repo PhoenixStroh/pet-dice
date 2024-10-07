@@ -54,11 +54,11 @@ func _on_pet_die_moved_to_hand(pet_die : PetDie, hand : Hand):
 func _on_pet_die_updated(pet_die : PetDie):
 	board.update_pet(pet_die)
 
-func _on_pet_die_lurched(pet_die : PetDie):
-	board.lurch_pet(pet_die)
+func _on_pet_die_lurched(pet_die : PetDie, play_sound := true):
+	board.lurch_pet(pet_die, play_sound)
 
-func _on_pet_die_shaken(pet_die : PetDie):
-	board.shake_pet(pet_die)
+func _on_pet_die_shaken(pet_die : PetDie, play_sound := true):
+	board.shake_pet(pet_die, play_sound)
 
 func _on_pet_die_abilitied(pet_die : PetDie):
 	board.play_ability_sfx(pet_die)

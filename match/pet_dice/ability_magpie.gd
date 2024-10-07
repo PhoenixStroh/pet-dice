@@ -19,7 +19,8 @@ func process_pet_action(cur_match : Match, action : Action) -> bool:
 					cur_hand.move_pet_to_hand(action.selected_pet, cur_hand)
 					
 					cur_match.call_pet_abilitied(cur_pet_dice)
-					cur_match.call_pet_shaken(cur_pet_dice)
+					cur_match.call_pet_shaken(cur_pet_dice, false)
+					cur_match.call_pet_shaken(action.selected_pet)
 					
 					return true
 	return false

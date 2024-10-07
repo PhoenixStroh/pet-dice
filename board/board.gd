@@ -65,17 +65,17 @@ func roll_pet_to_index(pet_die : PetDie):
 		if dice_hold:
 			dice_hold.roll_to_index(pet_die.get_current_face_index())
 
-func lurch_pet(pet_die : PetDie):
+func lurch_pet(pet_die : PetDie, play_sound := true):
 	for board_hand in board_hands:
 		var dice_hold := board_hand.get_dice_hold(pet_die)
 		if dice_hold:
-			dice_hold.play_lurch()
+			dice_hold.play_lurch(play_sound)
 
-func shake_pet(pet_die : PetDie):
+func shake_pet(pet_die : PetDie, play_sound := true):
 	for board_hand in board_hands:
 		var dice_hold := board_hand.get_dice_hold(pet_die)
 		if dice_hold:
-			dice_hold.play_shake()
+			dice_hold.play_shake(play_sound)
 
 func play_ability_sfx(pet_die : PetDie):
 	for board_hand in board_hands:
