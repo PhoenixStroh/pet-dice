@@ -68,6 +68,15 @@ func _on_game_ended(winner_valuations : Array[Valuation], valuations : Array[Val
 	if end_game_panel:
 		end_game_panel.display_end(winner_valuations, valuations)
 
+func _on_input_frozen_changed(_is_input_frozen : bool):
+	_set_end_button_disabled()
+
+func _on_turn_state_changed(_new_turn_state : Match.TURN_STATE):
+	_set_end_button_disabled()
+
+func _set_end_button_disabled():
+	end_turn_button.disabled = cur_match.is_input_frozen or cur_match.turn_state == Match.TURN_STATE.PET_ACTION
+
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("restart"):
@@ -82,6 +91,9 @@ func setup():
 	cur_match.pet_die_updated.connect(_on_pet_die_updated)
 	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
 	cur_match.game_ended.connect(_on_game_ended)
+	
+	cur_match.input_frozen_changed.connect(_on_input_frozen_changed)
+	cur_match.turn_state_changed.connect(_on_turn_state_changed)
 	
 	# Setup
 	cur_match.setup(starting_pets)
@@ -156,7 +168,7 @@ func action_draft_pet(pet_die : PetDie):
 func action_roll_dice(pet_die : PetDie):
 	cur_match.is_input_frozen = true
 	
-	declare_end_button.visible = false
+	declare_end_button.disabled = true
 	await cur_match.roll_pet(pet_die, true)
 	
 	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())
@@ -165,7 +177,7 @@ func action_roll_dice(pet_die : PetDie):
 
 func action_end_turn():
 	cur_match.end_turn()
-	declare_end_button.visible = true
+	declare_end_button.disabled = false
 	
 	whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
 	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())

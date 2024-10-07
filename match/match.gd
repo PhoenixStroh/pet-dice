@@ -9,6 +9,9 @@ signal pet_die_abilitied(pet_die : PetDie)
 signal pet_die_shaken(pet_die : PetDie, play_sound : bool)
 signal pet_die_started_pet_turn(pet : PetDie)
 
+signal input_frozen_changed(new_is_frozen : bool)
+signal turn_state_changed(new_turn_state : TURN_STATE)
+
 signal game_ended(winner_indexes : Array[Valuation], valuations : Array[Valuation])
 
 enum MATCH_STATE {
@@ -26,8 +29,14 @@ enum TURN_STATE {
 @export var minimum_turns := 2
 
 var match_state : MATCH_STATE = MATCH_STATE.SETUP
-var turn_state : TURN_STATE = TURN_STATE.TURN_ACTION
-var is_input_frozen := false
+var turn_state : TURN_STATE = TURN_STATE.TURN_ACTION :
+	set(value):
+		turn_state = value
+		turn_state_changed.emit(turn_state)
+var is_input_frozen := false :
+	set(value):
+		is_input_frozen = value
+		input_frozen_changed.emit(is_input_frozen)
 var turn_index := 0
 var turn_rolls_used := 0
 var end_declared := false
