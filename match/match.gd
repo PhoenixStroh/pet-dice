@@ -7,6 +7,7 @@ signal pet_die_updated(pet_die : PetDie)
 signal pet_die_lurched(pet_die : PetDie, play_sound : bool)
 signal pet_die_abilitied(pet_die : PetDie)
 signal pet_die_shaken(pet_die : PetDie, play_sound : bool)
+signal pet_die_constant_shaken(pet_die : PetDie, is_shaking : bool)
 signal pet_die_started_pet_turn(pet : PetDie)
 
 signal input_frozen_changed(new_is_frozen : bool)
@@ -207,6 +208,9 @@ func call_pet_shaken(pet_die : PetDie, play_sound := true):
 
 func call_pet_abilitied(pet_die : PetDie):
 	pet_die_abilitied.emit(pet_die)
+
+func call_pet_constant_shaken(pet_die : PetDie, is_shaking : bool):
+	pet_die_constant_shaken.emit(pet_die, is_shaking)
 
 func update_passives():
 	for hand in get_hands():

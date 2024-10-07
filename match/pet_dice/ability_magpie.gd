@@ -4,7 +4,8 @@ extends Ability
 func _get_new_self() -> Resource:
 	return AbilityMagpie.new()
 
-func perform_active_ability(_cur_match : Match) -> bool:
+func perform_active_ability(cur_match : Match) -> bool:
+	cur_match.call_pet_constant_shaken(cur_pet_dice, true)
 	return true
 
 func process_pet_action(cur_match : Match, action : Action) -> bool:

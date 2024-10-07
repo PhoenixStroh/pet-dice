@@ -60,6 +60,12 @@ func _on_pet_die_lurched(pet_die : PetDie, play_sound := true):
 func _on_pet_die_shaken(pet_die : PetDie, play_sound := true):
 	board.shake_pet(pet_die, play_sound)
 
+func _on_pet_die_constant_shaken(pet_die : PetDie, is_shaking : bool):
+	if is_shaking:
+		board.play_constant_shake_on_pet(pet_die)
+	else:
+		board.stop_animation_on_pet(pet_die)
+
 func _on_pet_die_abilitied(pet_die : PetDie):
 	board.play_ability_sfx(pet_die)
 
@@ -92,6 +98,7 @@ func setup():
 	cur_match.pet_die_rolled.connect(_on_pet_die_rolled)
 	cur_match.pet_die_lurched.connect(_on_pet_die_lurched)
 	cur_match.pet_die_shaken.connect(_on_pet_die_shaken)
+	cur_match.pet_die_constant_shaken.connect(_on_pet_die_constant_shaken)
 	cur_match.pet_die_abilitied.connect(_on_pet_die_abilitied)
 	cur_match.pet_die_updated.connect(_on_pet_die_updated)
 	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
