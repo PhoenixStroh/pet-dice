@@ -1,20 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://lnu8eyg7m8n5"]
+[gd_scene load_steps=9 format=3 uid="uid://lnu8eyg7m8n5"]
 
 [ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_2xrwp"]
 [ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_e4vrq"]
 [ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="3_5s6n5"]
-[ext_resource type="PackedScene" uid="uid://8biwr3l3ij48" path="res://assets/pet_dice/models/magpie.glb" id="3_d27n7"]
+[ext_resource type="PackedScene" uid="uid://8biwr3l3ij48" path="res://assets/pet_dice/models/Magpie.glb" id="3_d27n7"]
 [ext_resource type="PackedScene" uid="uid://d4a5r8atlqw42" path="res://assets/pet_dice/d4_faces.tscn" id="4_sm3cg"]
-[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="5_upvet"]
-[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="6_yxbqi"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bate"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("5_upvet")
-shader_parameter/growth = 0.1
-shader_parameter/face_values = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
-shader_parameter/albedo_texture = ExtResource("6_yxbqi")
 
 [sub_resource type="Animation" id="Animation_6vpuk"]
 length = 0.916667
@@ -81,7 +71,6 @@ roll_time = 2.0
 material_override = ExtResource("3_5s6n5")
 
 [node name="D4Faces" parent="LurchEmpty/RollMiddle/RollPivot/Magpie" instance=ExtResource("4_sm3cg")]
-material_override = SubResource("ShaderMaterial_0bate")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../LurchEmpty")

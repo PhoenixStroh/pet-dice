@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://8biwr3l3ij48"
-path="res://.godot/imported/magpie.glb-c63acdd444585ca23b1d93c08e47a13c.scn"
+path="res://.godot/imported/Magpie.glb-4c1d3da46c1ff007ab388d3fbf7f5e07.scn"
 
 [deps]
 
-source_file="res://assets/pet_dice/models/magpie.glb"
-dest_files=["res://.godot/imported/magpie.glb-c63acdd444585ca23b1d93c08e47a13c.scn"]
+source_file="res://assets/pet_dice/models/Magpie.glb"
+dest_files=["res://.godot/imported/Magpie.glb-4c1d3da46c1ff007ab388d3fbf7f5e07.scn"]
 
 [params]
 

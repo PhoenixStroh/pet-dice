@@ -1,20 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b68mgpbu2qmf8"]
+[gd_scene load_steps=9 format=3 uid="uid://b68mgpbu2qmf8"]
 
 [ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_4g31g"]
 [ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_ts2rb"]
-[ext_resource type="PackedScene" uid="uid://dfbxrwyocrcfv" path="res://assets/pet_dice/models/ant.glb" id="2_xp1r6"]
+[ext_resource type="PackedScene" uid="uid://dfbxrwyocrcfv" path="res://assets/pet_dice/models/Ant.glb" id="2_xp1r6"]
 [ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="3_d10k6"]
 [ext_resource type="PackedScene" uid="uid://d4a5r8atlqw42" path="res://assets/pet_dice/d4_faces.tscn" id="4_bfequ"]
-[ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="5_mpq2n"]
-[ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="6_sjqdt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xlh2m"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("5_mpq2n")
-shader_parameter/growth = 0.115
-shader_parameter/face_values = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
-shader_parameter/albedo_texture = ExtResource("6_sjqdt")
 
 [sub_resource type="Animation" id="Animation_6vpuk"]
 length = 0.916667
@@ -81,7 +71,6 @@ roll_time = 2.0
 material_override = ExtResource("3_d10k6")
 
 [node name="D4Faces" parent="LurchEmpty/RollMiddle/RollPivot/Ant" instance=ExtResource("4_bfequ")]
-material_override = SubResource("ShaderMaterial_xlh2m")
 skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
