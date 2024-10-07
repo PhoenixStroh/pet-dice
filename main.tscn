@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcp8spyvt7omj"]
+[gd_scene load_steps=5 format=3 uid="uid://dcp8spyvt7omj"]
 
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="1_22jjp"]
 [ext_resource type="PackedScene" uid="uid://bb7j3gfl8ipim" path="res://pet_selection/pet_selection.tscn" id="1_wuseq"]
+[ext_resource type="PackedScene" uid="uid://dul0b6ia8gdhr" path="res://tutorial/Tutorial.tscn" id="3_pf38j"]
 
 [sub_resource type="GDScript" id="GDScript_tqwlw"]
 script/source = "extends Button
@@ -86,8 +87,9 @@ offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-disabled = true
 text = "Tutorial (PLEASE TRY!)"
+script = ExtResource("1_22jjp")
+next_scene = ExtResource("3_pf38j")
 
 [node name="QuitButton" type="Button" parent="Control"]
 layout_mode = 1

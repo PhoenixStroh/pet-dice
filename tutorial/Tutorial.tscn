@@ -1,0 +1,632 @@
+[gd_scene load_steps=10 format=3 uid="uid://dul0b6ia8gdhr"]
+
+[ext_resource type="Script" path="res://tutorial/tutorial.gd" id="1_3lyrb"]
+[ext_resource type="Texture2D" uid="uid://ckrw6yyptfge3" path="res://tutorial/TutorialBackground.png" id="1_hobhq"]
+[ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="2_gs0fq"]
+[ext_resource type="Texture2D" uid="uid://di45to5ybwwyf" path="res://tutorial/1.png" id="3_77jxx"]
+[ext_resource type="Texture2D" uid="uid://b5mtlsi30xfb7" path="res://tutorial/2.png" id="4_1ex3r"]
+[ext_resource type="Texture2D" uid="uid://bbisnil2nqb6m" path="res://tutorial/3.png" id="5_yqakh"]
+[ext_resource type="Texture2D" uid="uid://cjuyd4hx55fe7" path="res://tutorial/4.png" id="6_baq5a"]
+[ext_resource type="Texture2D" uid="uid://blprevk8o7x51" path="res://tutorial/5.png" id="7_bj7xg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2som"]
+bg_color = Color(0.0920163, 0.129814, 0.504077, 1)
+border_width_left = 5
+border_width_top = 10
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0.930372, 0.823254, 0.76898, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0.0965671, 0.0901858, 0.293073, 0.411765)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="Tutorial" type="Control" node_paths=PackedStringArray("screens")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3lyrb")
+screens = [NodePath("Screen0"), NodePath("Screen1"), NodePath("Screen2"), NodePath("Screen3"), NodePath("Screen4")]
+next_scene = "res://main.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 816.0
+texture = ExtResource("1_hobhq")
+
+[node name="Screen0" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="PopUpMenu" type="PanelContainer" parent="Screen0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -418.0
+offset_top = 75.0
+offset_right = 419.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen0/PopUpMenu"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen0/PopUpMenu/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 357.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "WELCOME TO RANDIMALS!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu2" type="PanelContainer" parent="Screen0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 271.0
+offset_right = 650.0
+offset_bottom = 408.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen0/PopUpMenu2"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen0/PopUpMenu2/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_top = 15.0
+offset_right = 391.5
+offset_bottom = 364.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "RANDNIMALS IS A GAME DICE ARE ANIMALS, EACH WITH THEIR OWN ABILITY!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu3" type="PanelContainer" parent="Screen0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 468.0
+offset_right = 650.0
+offset_bottom = 643.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen0/PopUpMenu3"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen0/PopUpMenu3/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_top = 15.0
+offset_right = 391.5
+offset_bottom = 364.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "YOU AND YOUR OPPONENT WILL TAKE TURNS ROLLING DICE, TRYING TO PUT TOGETHER THE HIGHEST SCORING PATTERN OR \"HAND\"."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Screen0"]
+layout_mode = 0
+offset_left = -680.0
+offset_top = 192.0
+offset_right = -168.0
+offset_bottom = 740.0
+texture = ExtResource("3_77jxx")
+
+[node name="Screen1" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="PopUpMenu4" type="PanelContainer" parent="Screen1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -418.0
+offset_top = 75.0
+offset_right = 419.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen1/PopUpMenu4"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen1/PopUpMenu4/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 357.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "DRAFTING YOUR DICE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu2" type="PanelContainer" parent="Screen1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 276.0
+offset_right = 650.0
+offset_bottom = 442.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen1/PopUpMenu2"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen1/PopUpMenu2/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -391.0
+offset_right = 391.0
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "AT THE START OF THE GAME, YOU AND YOUR OPPONENT WILL TAKE TURNS SELECTING DICE FROM THE POOL IN THE MIDDLE OF THE BOARD."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu3" type="PanelContainer" parent="Screen1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 496.0
+offset_right = 650.0
+offset_bottom = 622.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen1/PopUpMenu3"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen1/PopUpMenu3/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_top = 9.0
+offset_right = 391.5
+offset_bottom = 358.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "YOU WILL END UP WITH TWO DICE EACH, WITH 2 SHARED DICE IN THE MIDDLE."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Screen1"]
+layout_mode = 0
+offset_left = -643.0
+offset_top = 193.0
+offset_right = -131.0
+offset_bottom = 741.0
+texture = ExtResource("4_1ex3r")
+
+[node name="Screen2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="PopUpMenu4" type="PanelContainer" parent="Screen2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -418.0
+offset_top = 75.0
+offset_right = 419.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen2/PopUpMenu4"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen2/PopUpMenu4/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 357.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "TAKING YOUR TURN"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu2" type="PanelContainer" parent="Screen2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 217.0
+offset_right = 650.0
+offset_bottom = 383.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen2/PopUpMenu2"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen2/PopUpMenu2/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -391.0
+offset_right = 391.0
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "AFTER YOU PICK YOUR DICE, YOU WILL TAKE TURNS ROLLING 1 DICE EACH. THIS CAN BE EITHER FROM YOUR DICE OR THE SHARED DICE."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu3" type="PanelContainer" parent="Screen2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 430.0
+offset_right = 650.0
+offset_bottom = 556.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen2/PopUpMenu3"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen2/PopUpMenu3/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_top = 9.0
+offset_right = 391.5
+offset_bottom = 358.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "WHEN YOU ROLL A DIE, YOU ALSO ACTIVATE THAT CREATURE'S SPECIAL ABILITY."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu5" type="PanelContainer" parent="Screen2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 600.0
+offset_right = 650.0
+offset_bottom = 728.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen2/PopUpMenu5"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen2/PopUpMenu5/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -391.0
+offset_top = 11.0
+offset_right = 391.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "BE SURE TO CONSIDER YOUR CREATURES' ABILITIES AND WHAT FACES THEY HAVE!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Screen2"]
+layout_mode = 0
+offset_left = -680.0
+offset_top = 192.0
+offset_right = -168.0
+offset_bottom = 740.0
+texture = ExtResource("5_yqakh")
+
+[node name="Screen3" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="PopUpMenu4" type="PanelContainer" parent="Screen3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -418.0
+offset_top = 75.0
+offset_right = 419.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen3/PopUpMenu4"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen3/PopUpMenu4/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 357.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "ENDING THE GAME"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu2" type="PanelContainer" parent="Screen3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 283.0
+offset_right = 650.0
+offset_bottom = 482.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen3/PopUpMenu2"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen3/PopUpMenu2/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -391.0
+offset_right = 391.0
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "DURING YOUR TURN, YOU CAN DECLARE YOUR HAND. YOU AND YOUR OPPONENT WILL EACH GET 1 MORE ROLL TO BUILD A BETTER HAND OR RUIN THEIR OPPONENT'S HAND."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu3" type="PanelContainer" parent="Screen3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 520.0
+offset_right = 650.0
+offset_bottom = 646.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen3/PopUpMenu3"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen3/PopUpMenu3/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_top = 9.0
+offset_right = 391.5
+offset_bottom = 358.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "AFTER BOTH PLAYERS HAVE TAKEN THEIR LAST ROLL, THE GAME IS SCORED."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Screen3"]
+layout_mode = 0
+offset_left = -680.0
+offset_top = 192.0
+offset_right = -168.0
+offset_bottom = 740.0
+texture = ExtResource("6_baq5a")
+
+[node name="Screen4" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="PopUpMenu4" type="PanelContainer" parent="Screen4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -418.0
+offset_top = 75.0
+offset_right = 419.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen4/PopUpMenu4"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen4/PopUpMenu4/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 357.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "HOW TO SCORE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu2" type="PanelContainer" parent="Screen4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 268.0
+offset_right = 650.0
+offset_bottom = 382.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen4/PopUpMenu2"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen4/PopUpMenu2/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -405.5
+offset_right = 405.5
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "A HAND IS BUILT OUT OF 3 DICE FROM YOUR HAND AND THE SHARED DICE, SIMILAR TO POKER."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopUpMenu3" type="PanelContainer" parent="Screen4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 447.0
+offset_right = 650.0
+offset_bottom = 658.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="Screen4/PopUpMenu3"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="Screen4/PopUpMenu3/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.5
+offset_top = 9.0
+offset_right = 391.5
+offset_bottom = 358.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gs0fq")
+theme_override_font_sizes/font_size = 36
+text = "HIGHEST SCORE: THREE OF A KIND (ex: 4,4,4)
+2nd: RUN (ex: 5,6,7)
+3rd: PAIR (ex: 3,3,8)
+LOWEST SCORE: HIGH ROLL (ex: 2, 4, 8)"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Screen4"]
+layout_mode = 0
+offset_left = -680.0
+offset_top = 192.0
+offset_right = -168.0
+offset_bottom = 740.0
+texture = ExtResource("7_bj7xg")
