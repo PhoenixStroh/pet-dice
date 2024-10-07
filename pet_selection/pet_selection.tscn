@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb7j3gfl8ipim"]
+[gd_scene load_steps=9 format=3 uid="uid://bb7j3gfl8ipim"]
 
 [ext_resource type="Script" path="res://pet_selection/pet_button_listener.gd" id="1_bu8cn"]
 [ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="2_85ia7"]
@@ -8,7 +8,6 @@
 [ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="5_2wb0s"]
 [ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="7_tkrgh"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="8_e2kdd"]
-[ext_resource type="PackedScene" uid="uid://mwt80ux4ar5b" path="res://match/match.tscn" id="9_ue1j5"]
 
 [node name="PetSelection" type="Control"]
 layout_mode = 3
@@ -125,4 +124,4 @@ grow_vertical = 0
 disabled = true
 text = "Continue"
 script = ExtResource("8_e2kdd")
-next_scene = ExtResource("9_ue1j5")
+next_scene = "res://match/match.tscn"

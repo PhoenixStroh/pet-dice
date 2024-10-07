@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://mwt80ux4ar5b"]
+[gd_scene load_steps=27 format=3 uid="uid://mwt80ux4ar5b"]
 
 [ext_resource type="Script" path="res://match/match_director.gd" id="1_d4qhh"]
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="2_bc6af"]
@@ -15,8 +15,6 @@
 [ext_resource type="Script" path="res://match/hand_panel.gd" id="11_871i5"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="11_jbfl2"]
 [ext_resource type="Script" path="res://match/end_game_panel.gd" id="12_rf6ex"]
-[ext_resource type="PackedScene" uid="uid://bb7j3gfl8ipim" path="res://pet_selection/pet_selection.tscn" id="12_xjp6g"]
-[ext_resource type="PackedScene" uid="uid://dcp8spyvt7omj" path="res://main.tscn" id="13_isaln"]
 [ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="16_1rbcj"]
 [ext_resource type="PackedScene" uid="uid://dgtkxhbx07l17" path="res://match/popup.tscn" id="16_3vddt"]
 [ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="17_cuk3x"]
@@ -196,7 +194,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Play Again"
 script = ExtResource("11_jbfl2")
-next_scene = ExtResource("12_xjp6g")
+next_scene = "res://pet_selection/pet_selection.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuButton" type="Button" parent="CanvasLayer/Control/EndGameButtons"]
@@ -214,7 +212,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Go To Main Menu"
 script = ExtResource("11_jbfl2")
-next_scene = ExtResource("13_isaln")
+next_scene = "res://main.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="HandPanel" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("open_close_button")]
