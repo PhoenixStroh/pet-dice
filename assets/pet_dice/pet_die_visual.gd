@@ -44,3 +44,11 @@ func play_shake(play_sound : bool):
 	animation_player.play("shake")
 	if pet_affected_player and play_sound:
 		pet_affected_player.play()
+
+func play_constant_shake():
+	if animation_player.current_animation != "constant_shake":
+		animation_player.play("constant_shake")
+
+func stop_animation():
+	if animation_player:
+		animation_player.stop()

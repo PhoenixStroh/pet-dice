@@ -140,7 +140,7 @@ func _process_turn_action(action : Action):
 
 func _process_pet_action(action : Action):
 	if action.stop_current_action:
-		if cur_match.cur_pet_dice:
+		if not cur_match.is_input_frozen and cur_match.cur_pet_dice:
 			if cur_match.cur_pet_dice.ability:
 				if not cur_match.cur_pet_dice.ability.is_ability_forced:
 					cur_match.end_pet_turn()

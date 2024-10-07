@@ -77,6 +77,18 @@ func shake_pet(pet_die : PetDie, play_sound := true):
 		if dice_hold:
 			dice_hold.play_shake(play_sound)
 
+func play_constant_shake_on_pet(pet_die : PetDie):
+	for board_hand in board_hands:
+		var dice_hold := board_hand.get_dice_hold(pet_die)
+		if dice_hold:
+			dice_hold.play_constant_shake()
+
+func stop_animation_on_pet(pet_die : PetDie):
+	for board_hand in board_hands:
+		var dice_hold := board_hand.get_dice_hold(pet_die)
+		if dice_hold:
+			dice_hold.stop_animation()
+
 func play_ability_sfx(pet_die : PetDie):
 	for board_hand in board_hands:
 		var dice_hold := board_hand.get_dice_hold(pet_die)

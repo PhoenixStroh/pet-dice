@@ -75,6 +75,14 @@ func play_shake(play_sound : bool):
 	if pet_die_visual:
 		pet_die_visual.play_shake(play_sound)
 
+func play_constant_shake():
+	if pet_die_visual:
+		pet_die_visual.play_constant_shake()
+
+func stop_animation():
+	if pet_die_visual:
+		pet_die_visual.stop_animation()
+
 func play_ability_sfx():
 	if pet_die_visual:
 		pet_die_visual.play_ability_sfx()
