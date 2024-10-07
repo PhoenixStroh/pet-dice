@@ -160,6 +160,8 @@ func end_turn():
 	if end_declared:
 		turn_index_since_declared += 1
 	
+	update_passives()
+	
 	if turn_index_since_declared >= get_player_count():
 		match_state = MATCH_STATE.END
 		

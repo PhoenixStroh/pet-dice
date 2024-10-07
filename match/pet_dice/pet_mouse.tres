@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_1dv8l"]
 script = ExtResource("1_2wl4o")
 ability_text = "While Mouse is in your hand, you gain an additional roll if you're hand's total is less than 6"
+is_ability_forced = false
 
 [resource]
 script = ExtResource("1_fduay")
