@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcp8spyvt7omj"]
+[gd_scene load_steps=13 format=3 uid="uid://dcp8spyvt7omj"]
 
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="1_22jjp"]
 [ext_resource type="StyleBox" uid="uid://q4d1u7x0bapr" path="res://assets/style_elements/basic_panel_disabled.tres" id="1_q5c17"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://bmjxampkrfadl" path="res://assets/style_elements/basic_panel_pressed.tres" id="3_udoki"]
 [ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="4_pytqv"]
 [ext_resource type="PackedScene" uid="uid://bf05nd8ni6gio" path="res://match/environment.tscn" id="7_0yg8s"]
+[ext_resource type="Script" path="res://pet_selection/continue_with_ai.gd" id="8_ybiqo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bsmb8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -132,7 +133,7 @@ theme_override_styles/hover = ExtResource("2_k7j1l")
 theme_override_styles/pressed = ExtResource("3_udoki")
 theme_override_styles/normal = ExtResource("4_pytqv")
 text = "Play Local 1v1"
-script = ExtResource("1_22jjp")
+script = ExtResource("8_ybiqo")
 next_scene = "res://pet_selection/pet_selection.tscn"
 
 [node name="PlayAIButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -145,6 +146,8 @@ theme_override_styles/pressed = ExtResource("3_udoki")
 theme_override_styles/normal = ExtResource("4_pytqv")
 disabled = true
 text = "Play Vs AI"
+script = ExtResource("8_ybiqo")
+playing_with_ai = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
