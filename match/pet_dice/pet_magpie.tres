@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_lsiml"]
 script = ExtResource("1_fhx12")
 ability_text = "When rolled, you may choose a pet in your opponent's hand to swap this pet with"
+is_ability_forced = false
 
 [resource]
 script = ExtResource("1_wgin0")
@@ -13,4 +14,6 @@ name = "Magpie"
 type = 0
 faces = Array[int]([1, 1, 2, 6])
 ability = SubResource("Resource_lsiml")
+default_sfx_path = "res://assets/sound/Magpie.wav"
+affected_sfx_path = "res://assets/sound/AffectedHighPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_magpie.tscn"

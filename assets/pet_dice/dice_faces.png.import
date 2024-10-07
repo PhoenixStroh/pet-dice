@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lneds32xjpow"
-path.s3tc="res://.godot/imported/dice_faces.png-85a0c1d92e6fab4ae636a941bff0ce7f.s3tc.ctex"
+path="res://.godot/imported/dice_faces.png-85a0c1d92e6fab4ae636a941bff0ce7f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/pet_dice/dice_faces.png"
-dest_files=["res://.godot/imported/dice_faces.png-85a0c1d92e6fab4ae636a941bff0ce7f.s3tc.ctex"]
+dest_files=["res://.godot/imported/dice_faces.png-85a0c1d92e6fab4ae636a941bff0ce7f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

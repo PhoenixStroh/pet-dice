@@ -3,6 +3,7 @@ shader_type spatial;
 const int slices = 10;
 
 uniform sampler2D albedo_texture : source_color;
+uniform vec3 albedo_color : source_color = vec3(1.0);
 
 uniform float growth : hint_range(0.0, 1.0, 0.001) = 0.1;
 
@@ -17,7 +18,7 @@ void fragment() {
 	int face_value = face_values[int(floor(UV.y * 10.0))];
 	
 	vec4 albedo_alpha = texture(albedo_texture, UV + vec2(float(face_value) * (1.0 / float(slices)), 0.0));
-	ALBEDO = albedo_alpha.rgb * 0.5;
+	ALBEDO = albedo_color * 0.5;
 	EMISSION = ALBEDO;
 	ALPHA = albedo_alpha.a;
 }

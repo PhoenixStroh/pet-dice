@@ -4,9 +4,14 @@ extends Resource
 signal pet_die_rolled(pet_die : PetDie)
 signal pet_die_moved_to_hand(pet_die : PetDie, hand : Hand)
 signal pet_die_updated(pet_die : PetDie)
-signal pet_die_lurched(pet_die : PetDie)
-signal pet_die_shaken(pet_die : PetDie)
+signal pet_die_lurched(pet_die : PetDie, play_sound : bool)
+signal pet_die_abilitied(pet_die : PetDie)
+signal pet_die_shaken(pet_die : PetDie, play_sound : bool)
+signal pet_die_constant_shaken(pet_die : PetDie, is_shaking : bool)
 signal pet_die_started_pet_turn(pet : PetDie)
+
+signal input_frozen_changed(new_is_frozen : bool)
+signal turn_state_changed(new_turn_state : TURN_STATE)
 
 signal game_ended(winner_indexes : Array[Valuation], valuations : Array[Valuation])
 
@@ -25,8 +30,14 @@ enum TURN_STATE {
 @export var minimum_turns := 2
 
 var match_state : MATCH_STATE = MATCH_STATE.SETUP
-var turn_state : TURN_STATE = TURN_STATE.TURN_ACTION
-var is_input_frozen := false
+var turn_state : TURN_STATE = TURN_STATE.TURN_ACTION :
+	set(value):
+		turn_state = value
+		turn_state_changed.emit(turn_state)
+var is_input_frozen := false :
+	set(value):
+		is_input_frozen = value
+		input_frozen_changed.emit(is_input_frozen)
 var turn_index := 0
 var turn_rolls_used := 0
 var end_declared := false
@@ -139,6 +150,7 @@ func start_pet_turn(pet_die : PetDie):
 
 func end_pet_turn():
 	turn_state = TURN_STATE.TURN_ACTION
+	call_pet_constant_shaken(cur_pet_dice, false)
 	cur_pet_dice = null
 
 func end_turn():
@@ -147,6 +159,8 @@ func end_turn():
 	has_rolled_this_turn = false
 	if end_declared:
 		turn_index_since_declared += 1
+	
+	update_passives()
 	
 	if turn_index_since_declared >= get_player_count():
 		match_state = MATCH_STATE.END
@@ -189,11 +203,17 @@ func roll_pet(pet_die : PetDie, player_action := false):
 func call_pet_updated(pet_die : PetDie):
 	pet_die_updated.emit(pet_die)
 
-func call_pet_lurched(pet_die : PetDie):
+func call_pet_lurched(pet_die : PetDie, play_sound := true):
 	pet_die_lurched.emit(pet_die)
 
-func call_pet_shaken(pet_die : PetDie):
+func call_pet_shaken(pet_die : PetDie, play_sound := true):
 	pet_die_shaken.emit(pet_die)
+
+func call_pet_abilitied(pet_die : PetDie):
+	pet_die_abilitied.emit(pet_die)
+
+func call_pet_constant_shaken(pet_die : PetDie, is_shaking : bool):
+	pet_die_constant_shaken.emit(pet_die, is_shaking)
 
 func update_passives():
 	for hand in get_hands():

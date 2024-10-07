@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_k17cm"]
 script = ExtResource("1_0jbob")
 ability_text = "When rolled, the highest valued dice on the board are set to their lowest value"
+is_ability_forced = false
 
 [resource]
 script = ExtResource("1_82oig")
@@ -13,4 +14,6 @@ name = "Ant"
 type = 0
 faces = Array[int]([1, 2, 3, 4])
 ability = SubResource("Resource_k17cm")
+default_sfx_path = "res://assets/sound/Ant.wav"
+affected_sfx_path = "res://assets/sound/AffectedHighPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_ant.tscn"

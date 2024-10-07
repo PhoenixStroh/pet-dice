@@ -9,6 +9,8 @@ signal hover_changed(is_hovering : bool)
 @export var label : Label3D
 @export var area : Area3D
 
+@export var roll_player : AudioStreamPlayer
+
 var pet_die : PetDie :
 	set(value):
 		pet_die = value
@@ -16,6 +18,7 @@ var pet_die : PetDie :
 			if ResourceLoader.exists(pet_die.visual_scene_path):
 				var pet_die_visual_scene := load(pet_die.visual_scene_path)
 				pet_die_visual = pet_die_visual_scene.instantiate()
+				pet_die_visual.setup(pet_die)
 				add_child(pet_die_visual)
 		else:
 			if pet_die_visual:
@@ -61,14 +64,28 @@ func update_faces(face_values : Array[int]):
 func roll_to_index(index : int):
 	if pet_die_visual:
 		pet_die_visual.roll_to_index(index)
+	if roll_player:
+		roll_player.play()
 
-func play_lurch():
+func play_lurch(play_sound : bool):
 	if pet_die_visual:
-		pet_die_visual.play_lurch()
+		pet_die_visual.play_lurch(play_sound)
 
-func play_shake():
+func play_shake(play_sound : bool):
 	if pet_die_visual:
-		pet_die_visual.play_shake()
+		pet_die_visual.play_shake(play_sound)
+
+func play_constant_shake():
+	if pet_die_visual:
+		pet_die_visual.play_constant_shake()
+
+func stop_animation():
+	if pet_die_visual:
+		pet_die_visual.stop_animation()
+
+func play_ability_sfx():
+	if pet_die_visual:
+		pet_die_visual.play_ability_sfx()
 
 func update_label():
 	if not (label and pet_die):

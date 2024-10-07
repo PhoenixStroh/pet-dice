@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_1dv8l"]
 script = ExtResource("1_2wl4o")
 ability_text = "While Mouse is in your hand, you gain an additional roll if you're hand's total is less than 6"
+is_ability_forced = false
 
 [resource]
 script = ExtResource("1_fduay")
@@ -13,4 +14,6 @@ name = "Mouse"
 type = 1
 faces = Array[int]([1, 1, 2, 2, 3])
 ability = SubResource("Resource_1dv8l")
+default_sfx_path = ""
+affected_sfx_path = "res://assets/sound/AffectedHighPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_armadillo.tscn"

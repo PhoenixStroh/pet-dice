@@ -30,6 +30,9 @@ const DICE_TYPE_NAME := {
 @export var faces : Array[int] = []
 @export var ability : Ability
 
+@export_file(".wav") var default_sfx_path : String
+@export_file(".wav") var affected_sfx_path : String
+
 @export_file("*.tscn") var visual_scene_path : String
 
 var current_face_value : int :
@@ -53,6 +56,10 @@ func duplicate_fixed() -> PetDie:
 	pet_die.faces = faces.duplicate(true)
 	if ability:
 		pet_die.ability = ability.duplicate_fixed()
+	
+	pet_die.default_sfx_path = default_sfx_path
+	pet_die.affected_sfx_path = affected_sfx_path
+	
 	pet_die.visual_scene_path = visual_scene_path
 	pet_die._current_face_index = _current_face_index
 	pet_die.is_locked = is_locked

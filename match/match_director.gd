@@ -54,30 +54,58 @@ func _on_pet_die_moved_to_hand(pet_die : PetDie, hand : Hand):
 func _on_pet_die_updated(pet_die : PetDie):
 	board.update_pet(pet_die)
 
-func _on_pet_die_lurched(pet_die : PetDie):
-	board.lurch_pet(pet_die)
+func _on_pet_die_lurched(pet_die : PetDie, play_sound := true):
+	board.lurch_pet(pet_die, play_sound)
 
-func _on_pet_die_shaken(pet_die : PetDie):
-	board.shake_pet(pet_die)
+func _on_pet_die_shaken(pet_die : PetDie, play_sound := true):
+	board.shake_pet(pet_die, play_sound)
+
+func _on_pet_die_constant_shaken(pet_die : PetDie, is_shaking : bool):
+	if is_shaking:
+		board.play_constant_shake_on_pet(pet_die)
+	else:
+		board.stop_animation_on_pet(pet_die)
+
+func _on_pet_die_abilitied(pet_die : PetDie):
+	board.play_ability_sfx(pet_die)
 
 func _on_game_ended(winner_valuations : Array[Valuation], valuations : Array[Valuation]):
 	last_turn_panel.visible = false
 	if end_game_panel:
 		end_game_panel.display_end(winner_valuations, valuations)
 
+func _on_input_frozen_changed(_is_input_frozen : bool):
+	_set_end_button_disabled()
+
+func _on_turn_state_changed(_new_turn_state : Match.TURN_STATE):
+	_set_end_button_disabled()
+
+func _set_end_button_disabled():
+	end_turn_button.disabled = cur_match.is_input_frozen or cur_match.turn_state == Match.TURN_STATE.PET_ACTION
+
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("restart"):
 			get_tree().reload_current_scene()
+	
+	if event.is_action_pressed("cancel"):
+		var action = Action.new()
+		action.stop_current_action = true
+		process_action(action)
 
 func setup():
 	cur_match = Match.new()
 	cur_match.pet_die_rolled.connect(_on_pet_die_rolled)
 	cur_match.pet_die_lurched.connect(_on_pet_die_lurched)
 	cur_match.pet_die_shaken.connect(_on_pet_die_shaken)
+	cur_match.pet_die_constant_shaken.connect(_on_pet_die_constant_shaken)
+	cur_match.pet_die_abilitied.connect(_on_pet_die_abilitied)
 	cur_match.pet_die_updated.connect(_on_pet_die_updated)
 	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
 	cur_match.game_ended.connect(_on_game_ended)
+	
+	cur_match.input_frozen_changed.connect(_on_input_frozen_changed)
+	cur_match.turn_state_changed.connect(_on_turn_state_changed)
 	
 	# Setup
 	cur_match.setup(starting_pets)
@@ -118,9 +146,16 @@ func _process_turn_action(action : Action):
 			action_declare_end()
 
 func _process_pet_action(action : Action):
-	var pet_ability_finished := cur_match.get_cur_ability().process_pet_action(cur_match, action)
+	if action.stop_current_action:
+		if not cur_match.is_input_frozen and cur_match.cur_pet_dice:
+			if cur_match.cur_pet_dice.ability:
+				if not cur_match.cur_pet_dice.ability.is_ability_forced:
+					cur_match.end_pet_turn()
+					return
+	
+	var pet_ability_finished := await cur_match.get_cur_ability().process_pet_action(cur_match, action)
 	if pet_ability_finished:
-		cur_match.turn_state = cur_match.TURN_STATE.TURN_ACTION
+		cur_match.end_pet_turn()
 
 func action_draft_pet(pet_die : PetDie):
 	print(pet_die)
@@ -146,11 +181,13 @@ func action_draft_pet(pet_die : PetDie):
 				dice_hold.update_label()
 		
 		whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
+		board.board_hands[0].spacing = 2.0
+		board.board_hands[0].space_hand()
 
 func action_roll_dice(pet_die : PetDie):
 	cur_match.is_input_frozen = true
 	
-	declare_end_button.visible = false
+	declare_end_button.disabled = true
 	await cur_match.roll_pet(pet_die, true)
 	
 	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())
@@ -159,7 +196,7 @@ func action_roll_dice(pet_die : PetDie):
 
 func action_end_turn():
 	cur_match.end_turn()
-	declare_end_button.visible = true
+	declare_end_button.disabled = false
 	
 	whos_turn_label.text = "PLAYER %s" % (cur_match.get_whos_turn() + 1)
 	rolls_remaining_label.text = str(cur_match.get_rolls_remaining())

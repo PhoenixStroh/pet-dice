@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PetDie" load_steps=4 format=3 uid="uid://b4tvxdhxq4olx"]
+
+[ext_resource type="Script" path="res://match/pet_dice/ability_elephant.gd" id="1_0w3mi"]
+[ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="1_n22kg"]
+
+[sub_resource type="Resource" id="Resource_o52d7"]
+script = ExtResource("1_0w3mi")
+ability_text = "This is the default ability text."
+is_ability_forced = false
+
+[resource]
+script = ExtResource("1_n22kg")
+name = "Elephant"
+type = 1
+faces = Array[int]([3, 5, 5, 6, 8, 8])
+ability = SubResource("Resource_o52d7")
+default_sfx_path = ""
+affected_sfx_path = "res://assets/sound/AffectedLowPitch.wav"
+visual_scene_path = "res://assets/pet_dice/pet_elephant.tscn"

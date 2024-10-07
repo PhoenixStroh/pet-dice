@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dudsjfcopmc3f"]
+[gd_scene load_steps=13 format=3 uid="uid://dudsjfcopmc3f"]
 
 [ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_4p5w3"]
 [ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_at2ng"]
@@ -52,20 +52,42 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.625, 1, 0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_kfoil"]
+resource_name = "constant_shake"
+length = 0.2
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("../LurchEmpty")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.1, 0, 0, 0.1, 1, -0.1, 0, 0, 0.2, 1, 0.1, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LurchEmpty")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.416667, 1, 0, 0, 0, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vhqpj"]
 _data = {
+"constant_shake": SubResource("Animation_kfoil"),
 "lurch": SubResource("Animation_6vpuk"),
 "shake": SubResource("Animation_dfb6j")
 }
 
-[node name="Wolf" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
+[node name="Wolf" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh", "pet_ability_player", "pet_affected_player")]
 script = ExtResource("1_4p5w3")
 roll_pivot = NodePath("LurchEmpty/RollMiddle/RollPivot")
 animation_player = NodePath("AnimationPlayer")
 number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/wolf/D4Faces")
+pet_ability_player = NodePath("PetAbilitySfx")
+pet_affected_player = NodePath("PetAffectedSfx")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.250325, 0)
@@ -75,11 +97,13 @@ script = ExtResource("1_at2ng")
 roll_time = 2.0
 
 [node name="wolf" parent="LurchEmpty/RollMiddle/RollPivot" instance=ExtResource("2_6hjxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180751, 0)
 
-[node name="Wolf_D4" parent="LurchEmpty/RollMiddle/RollPivot/wolf" index="0"]
+[node name="Wolf_D4_002" parent="LurchEmpty/RollMiddle/RollPivot/wolf" index="0"]
 material_override = ExtResource("3_pdwg0")
 
 [node name="D4Faces" parent="LurchEmpty/RollMiddle/RollPivot/wolf" instance=ExtResource("3_lqpxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1886, 0)
 material_override = SubResource("ShaderMaterial_ccjmi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -87,5 +111,9 @@ root_node = NodePath("../LurchEmpty")
 libraries = {
 "": SubResource("AnimationLibrary_vhqpj")
 }
+
+[node name="PetAbilitySfx" type="AudioStreamPlayer" parent="."]
+
+[node name="PetAffectedSfx" type="AudioStreamPlayer" parent="."]
 
 [editable path="LurchEmpty/RollMiddle/RollPivot/wolf"]

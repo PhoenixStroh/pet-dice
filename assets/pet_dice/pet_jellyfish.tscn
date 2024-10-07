@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ra2blpdaxeic"]
+[gd_scene load_steps=13 format=3 uid="uid://ra2blpdaxeic"]
 
 [ext_resource type="PackedScene" uid="uid://c8lquwg48v6w7" path="res://assets/pet_dice/models/jellyfish.glb" id="1_1kytu"]
 [ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_lfy4x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dx4kfrbdfedgy" path="res://assets/pet_dice/d8_faces.tscn" id="5_dtl2j"]
 [ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="6_ekygq"]
 [ext_resource type="Texture2D" uid="uid://lneds32xjpow" path="res://assets/pet_dice/dice_faces.png" id="7_pvbco"]
+[ext_resource type="Animation" uid="uid://cd7u7xw51gvrh" path="res://assets/pet_dice/models/constant_shake.res" id="8_6qavf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdk2q"]
 resource_local_to_scene = true
@@ -54,19 +55,21 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.625, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vhqpj"]
 _data = {
+"constant_shake": ExtResource("8_6qavf"),
 "lurch": SubResource("Animation_6vpuk"),
 "shake": SubResource("Animation_dfb6j")
 }
 
-[node name="Jellyfish" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
+[node name="Jellyfish" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh", "pet_ability_player", "pet_affected_player")]
 script = ExtResource("1_ll10o")
 die_type = 2
 roll_pivot = NodePath("LurchEmpty/RollMiddle/RollPivot")
 animation_player = NodePath("AnimationPlayer")
 number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/jellyfish/D8Faces")
+pet_ability_player = NodePath("PetAbilitySfx")
+pet_affected_player = NodePath("PetAffectedSfx")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.415786, 0)
@@ -90,5 +93,9 @@ root_node = NodePath("../LurchEmpty")
 libraries = {
 "": SubResource("AnimationLibrary_vhqpj")
 }
+
+[node name="PetAbilitySfx" type="AudioStreamPlayer" parent="."]
+
+[node name="PetAffectedSfx" type="AudioStreamPlayer" parent="."]
 
 [editable path="LurchEmpty/RollMiddle/RollPivot/jellyfish"]

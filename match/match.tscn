@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://mwt80ux4ar5b"]
+[gd_scene load_steps=28 format=3 uid="uid://mwt80ux4ar5b"]
 
 [ext_resource type="Script" path="res://match/match_director.gd" id="1_d4qhh"]
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="2_bc6af"]
@@ -8,14 +8,14 @@
 [ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="6_3r23d"]
 [ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="7_cqg0e"]
 [ext_resource type="Script" path="res://board/board.gd" id="8_agr2f"]
+[ext_resource type="PackedScene" uid="uid://bf05nd8ni6gio" path="res://match/environment.tscn" id="8_epbot"]
 [ext_resource type="PackedScene" uid="uid://cf42aj12nfv8c" path="res://board/dice_hold.tscn" id="9_doo1s"]
 [ext_resource type="Script" path="res://board/board_hand.gd" id="10_2hok6"]
 [ext_resource type="Theme" uid="uid://m8kn0djrek6m" path="res://assets/themes/default_theme.tres" id="11_6fqwq"]
 [ext_resource type="Script" path="res://match/hand_panel.gd" id="11_871i5"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="11_jbfl2"]
 [ext_resource type="Script" path="res://match/end_game_panel.gd" id="12_rf6ex"]
-[ext_resource type="PackedScene" uid="uid://bb7j3gfl8ipim" path="res://pet_selection/pet_selection.tscn" id="12_xjp6g"]
-[ext_resource type="PackedScene" uid="uid://dcp8spyvt7omj" path="res://main.tscn" id="13_isaln"]
+[ext_resource type="PackedScene" uid="uid://df7spb38g1bni" path="res://universal/button_sfx.tscn" id="13_0q0iu"]
 [ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="16_1rbcj"]
 [ext_resource type="PackedScene" uid="uid://dgtkxhbx07l17" path="res://match/popup.tscn" id="16_3vddt"]
 [ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="17_cuk3x"]
@@ -27,19 +27,15 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_4grd8"]
+[sub_resource type="Sky" id="Sky_f8i3r"]
 sky_material = SubResource("ProceduralSkyMaterial_b3rew")
 
 [sub_resource type="Environment" id="Environment_vsr34"]
-background_mode = 2
-sky = SubResource("Sky_4grd8")
+background_mode = 1
+background_color = Color(0.0930599, 0.490897, 0.501143, 1)
+sky = SubResource("Sky_f8i3r")
 tonemap_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5gji"]
-albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_mq1ev"]
-size = Vector3(10, 0.2, 5)
+adjustment_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjpu7"]
 bg_color = Color(0.0920163, 0.129814, 0.504077, 1)
@@ -94,13 +90,11 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
+transform = Transform3D(-0.733896, 0.339631, -0.588258, 0, 0.866025, 0.5, 0.679262, 0.366948, -0.635572, -8.17862, 7.60495, -9.04808)
+current = true
+fov = 30.0
 
-[node name="TableMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-material_override = SubResource("StandardMaterial3D_n5gji")
-mesh = SubResource("BoxMesh_mq1ev")
-skeleton = NodePath("../..")
+[node name="Environment" parent="." instance=ExtResource("8_epbot")]
 
 [node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("board_hands", "pet_popup")]
 script = ExtResource("8_agr2f")
@@ -110,13 +104,14 @@ pet_popup = NodePath("../CanvasLayer/Control/Popup")
 
 [node name="CenterHandPivot" type="Node3D" parent="Board"]
 script = ExtResource("10_2hok6")
+spacing = 1.2
 
 [node name="Player1HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.035)
 script = ExtResource("10_2hok6")
 
 [node name="Player2HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 1.57091)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3.21893)
 script = ExtResource("10_2hok6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -159,6 +154,8 @@ grow_vertical = 0
 text = "End Turn"
 metadata/_edit_use_anchors_ = true
 
+[node name="ButtonSfx" parent="CanvasLayer/Control/MatchButtons/EndTurnButton" instance=ExtResource("13_0q0iu")]
+
 [node name="DeclareEndButton" type="Button" parent="CanvasLayer/Control/MatchButtons"]
 layout_mode = 1
 anchors_preset = 3
@@ -174,6 +171,8 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Declare End"
 metadata/_edit_use_anchors_ = true
+
+[node name="ButtonSfx" parent="CanvasLayer/Control/MatchButtons/DeclareEndButton" instance=ExtResource("13_0q0iu")]
 
 [node name="EndGameButtons" type="Control" parent="CanvasLayer/Control"]
 visible = false
@@ -201,7 +200,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Play Again"
 script = ExtResource("11_jbfl2")
-next_scene = ExtResource("12_xjp6g")
+next_scene = "res://pet_selection/pet_selection.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuButton" type="Button" parent="CanvasLayer/Control/EndGameButtons"]
@@ -219,7 +218,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Go To Main Menu"
 script = ExtResource("11_jbfl2")
-next_scene = ExtResource("13_isaln")
+next_scene = "res://main.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="HandPanel" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("open_close_button")]
@@ -312,6 +311,7 @@ offset_top = 50.0
 offset_right = 485.0
 offset_bottom = 203.0
 grow_horizontal = 2
+theme_override_styles/panel = ExtResource("16_1rbcj")
 script = ExtResource("12_rf6ex")
 who_won_label = NodePath("MarginContainer/VBoxContainer/VBoxContainer/WhoWonLabel")
 player_result_labels = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player1ResultLabel"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2ResultLabel")]
