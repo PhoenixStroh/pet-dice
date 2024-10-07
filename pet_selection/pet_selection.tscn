@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb7j3gfl8ipim"]
+[gd_scene load_steps=19 format=3 uid="uid://bb7j3gfl8ipim"]
 
 [ext_resource type="Script" path="res://pet_selection/pet_button_listener.gd" id="1_bu8cn"]
 [ext_resource type="Theme" uid="uid://m8kn0djrek6m" path="res://assets/themes/default_theme.tres" id="1_rupjl"]
+[ext_resource type="PackedScene" uid="uid://bf05nd8ni6gio" path="res://match/environment.tscn" id="2_1ca2a"]
 [ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="2_85ia7"]
 [ext_resource type="StyleBox" uid="uid://q4d1u7x0bapr" path="res://assets/style_elements/basic_panel_disabled.tres" id="2_msu8n"]
 [ext_resource type="Resource" uid="uid://c50xwslvj58mq" path="res://match/pet_dice/pet_armadillo.tres" id="3_1x61n"]
@@ -15,6 +16,20 @@
 [ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="7_tkrgh"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="8_e2kdd"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bpdbq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_4grd8"]
+sky_material = SubResource("ProceduralSkyMaterial_bpdbq")
+
+[sub_resource type="Environment" id="Environment_sloyp"]
+background_mode = 1
+background_color = Color(0.0930599, 0.490897, 0.501143, 1)
+sky = SubResource("Sky_4grd8")
+tonemap_mode = 2
+adjustment_enabled = true
+
 [node name="PetSelection" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -23,6 +38,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rupjl")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1440, 810)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Environment" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("2_1ca2a")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D"]
+environment = SubResource("Environment_sloyp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(-0.733896, 0.339631, -0.588258, 0, 0.866025, 0.5, 0.679262, 0.366948, -0.635572, -8.17862, 7.60495, -9.04808)
+current = true
+fov = 30.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcp8spyvt7omj"]
+[gd_scene load_steps=12 format=3 uid="uid://dcp8spyvt7omj"]
 
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="1_22jjp"]
 [ext_resource type="StyleBox" uid="uid://q4d1u7x0bapr" path="res://assets/style_elements/basic_panel_disabled.tres" id="1_q5c17"]
@@ -6,6 +6,21 @@
 [ext_resource type="StyleBox" uid="uid://mqexvcb756x2" path="res://assets/style_elements/basic_panel_hover.tres" id="2_k7j1l"]
 [ext_resource type="StyleBox" uid="uid://bmjxampkrfadl" path="res://assets/style_elements/basic_panel_pressed.tres" id="3_udoki"]
 [ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="4_pytqv"]
+[ext_resource type="PackedScene" uid="uid://bf05nd8ni6gio" path="res://match/environment.tscn" id="7_0yg8s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bsmb8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pe6w8"]
+sky_material = SubResource("ProceduralSkyMaterial_bsmb8")
+
+[sub_resource type="Environment" id="Environment_qkjrf"]
+background_mode = 1
+background_color = Color(0.0930599, 0.490897, 0.501143, 1)
+sky = SubResource("Sky_pe6w8")
+tonemap_mode = 2
+adjustment_enabled = true
 
 [sub_resource type="GDScript" id="GDScript_tqwlw"]
 script/source = "extends Button
@@ -28,6 +43,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_uo2s6")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1440, 810)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="Control/SubViewportContainer/SubViewport"]
+
+[node name="Environment" parent="Control/SubViewportContainer/SubViewport/Node3D" instance=ExtResource("7_0yg8s")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Control/SubViewportContainer/SubViewport/Node3D"]
+environment = SubResource("Environment_qkjrf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(-0.733896, 0.339631, -0.588258, 0, 0.866025, 0.5, 0.679262, 0.366948, -0.635572, -8.17862, 7.60495, -9.04808)
+current = true
+fov = 30.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
