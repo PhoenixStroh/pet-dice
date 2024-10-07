@@ -13,4 +13,6 @@ name = "Wolf"
 type = 0
 faces = Array[int]([3, 3, 4, 6])
 ability = SubResource("Resource_uluwj")
+default_sfx_path = "res://assets/sound/Wolf.wav"
+affected_sfx_path = "res://assets/sound/AffectedLowPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_wolf.tscn"

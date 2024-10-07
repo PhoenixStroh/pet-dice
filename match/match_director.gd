@@ -60,6 +60,9 @@ func _on_pet_die_lurched(pet_die : PetDie):
 func _on_pet_die_shaken(pet_die : PetDie):
 	board.shake_pet(pet_die)
 
+func _on_pet_die_abilitied(pet_die : PetDie):
+	board.play_ability_sfx(pet_die)
+
 func _on_game_ended(winner_valuations : Array[Valuation], valuations : Array[Valuation]):
 	last_turn_panel.visible = false
 	if end_game_panel:
@@ -75,6 +78,7 @@ func setup():
 	cur_match.pet_die_rolled.connect(_on_pet_die_rolled)
 	cur_match.pet_die_lurched.connect(_on_pet_die_lurched)
 	cur_match.pet_die_shaken.connect(_on_pet_die_shaken)
+	cur_match.pet_die_abilitied.connect(_on_pet_die_abilitied)
 	cur_match.pet_die_updated.connect(_on_pet_die_updated)
 	cur_match.pet_die_moved_to_hand.connect(_on_pet_die_moved_to_hand)
 	cur_match.game_ended.connect(_on_game_ended)

@@ -58,11 +58,13 @@ _data = {
 "shake": SubResource("Animation_dfb6j")
 }
 
-[node name="Wolf" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh")]
+[node name="Wolf" type="Node3D" node_paths=PackedStringArray("roll_pivot", "animation_player", "number_mesh", "pet_ability_player", "pet_affected_player")]
 script = ExtResource("1_4p5w3")
 roll_pivot = NodePath("LurchEmpty/RollMiddle/RollPivot")
 animation_player = NodePath("AnimationPlayer")
 number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/wolf/D4Faces")
+pet_ability_player = NodePath("PetAbilitySfx")
+pet_affected_player = NodePath("PetAffectedSfx")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
@@ -87,5 +89,9 @@ root_node = NodePath("../LurchEmpty")
 libraries = {
 "": SubResource("AnimationLibrary_vhqpj")
 }
+
+[node name="PetAbilitySfx" type="AudioStreamPlayer" parent="."]
+
+[node name="PetAffectedSfx" type="AudioStreamPlayer" parent="."]
 
 [editable path="LurchEmpty/RollMiddle/RollPivot/wolf"]

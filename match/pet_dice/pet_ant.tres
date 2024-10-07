@@ -13,4 +13,6 @@ name = "Ant"
 type = 0
 faces = Array[int]([1, 2, 3, 4])
 ability = SubResource("Resource_k17cm")
+default_sfx_path = "res://assets/sound/Ant.wav"
+affected_sfx_path = "res://assets/sound/AffectedHighPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_ant.tscn"

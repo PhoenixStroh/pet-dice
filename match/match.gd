@@ -5,6 +5,7 @@ signal pet_die_rolled(pet_die : PetDie)
 signal pet_die_moved_to_hand(pet_die : PetDie, hand : Hand)
 signal pet_die_updated(pet_die : PetDie)
 signal pet_die_lurched(pet_die : PetDie)
+signal pet_die_abilitied(pet_die : PetDie)
 signal pet_die_shaken(pet_die : PetDie)
 signal pet_die_started_pet_turn(pet : PetDie)
 
@@ -194,6 +195,9 @@ func call_pet_lurched(pet_die : PetDie):
 
 func call_pet_shaken(pet_die : PetDie):
 	pet_die_shaken.emit(pet_die)
+
+func call_pet_abilitied(pet_die : PetDie):
+	pet_die_abilitied.emit(pet_die)
 
 func update_passives():
 	for hand in get_hands():

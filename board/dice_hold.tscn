@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf42aj12nfv8c"]
+[gd_scene load_steps=4 format=3 uid="uid://cf42aj12nfv8c"]
 
 [ext_resource type="Script" path="res://board/dice_hold.gd" id="1_rcpbd"]
+[ext_resource type="AudioStream" uid="uid://c3e617dhy5c36" path="res://assets/sound/RollDice.wav" id="2_g8l4h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu20s"]
 
-[node name="DiceHold" type="Node3D" node_paths=PackedStringArray("label", "area")]
+[node name="DiceHold" type="Node3D" node_paths=PackedStringArray("label", "area", "roll_player")]
 script = ExtResource("1_rcpbd")
 label = NodePath("Label3D")
 area = NodePath("Area3D")
+roll_player = NodePath("RollSfx")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -21,3 +23,6 @@ visible = false
 text = "FOX
 (L) 3"
 font_size = 86
+
+[node name="RollSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_g8l4h")

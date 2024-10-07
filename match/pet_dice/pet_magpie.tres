@@ -13,4 +13,6 @@ name = "Magpie"
 type = 0
 faces = Array[int]([1, 1, 2, 6])
 ability = SubResource("Resource_lsiml")
+default_sfx_path = "res://assets/sound/Magpie.wav"
+affected_sfx_path = "res://assets/sound/AffectedHighPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_magpie.tscn"
