@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb7j3gfl8ipim"]
+
+[ext_resource type="Script" path="res://pet_selection/pet_button_listener.gd" id="1_bu8cn"]
+[ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="2_85ia7"]
+[ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="3_77nj4"]
+[ext_resource type="Resource" uid="uid://dg2mml1j85re0" path="res://match/pet_dice/pet_magpie.tres" id="4_h011r"]
+[ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="5_2wb0s"]
+[ext_resource type="Script" path="res://match/pet_dice/ability_ant.gd" id="6_40es1"]
+
+[node name="PetSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "SELECT YOUR PETS"
+horizontal_alignment = 1
+
+[node name="Button" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Button" node_paths=PackedStringArray("continue_button")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+script = ExtResource("1_bu8cn")
+continue_button = NodePath("../../../../Continue")
+
+[node name="MouseButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+text = "MOUSE"
+metadata/pet = ExtResource("2_85ia7")
+
+[node name="ElephantButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+disabled = true
+text = "Elephant"
+metadata/pet = null
+
+[node name="ArmadilloButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+disabled = true
+text = "Armadillo"
+metadata/pet = null
+
+[node name="JellyfishButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+text = "Jellyfish"
+metadata/pet = ExtResource("3_77nj4")
+
+[node name="MagpieButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+text = "Magpie"
+metadata/pet = ExtResource("4_h011r")
+
+[node name="SheepButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+disabled = true
+text = "Sheep"
+metadata/pet = null
+
+[node name="WolfButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+text = "Wolf"
+metadata/pet = ExtResource("5_2wb0s")
+
+[node name="SpiderButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+disabled = true
+text = "Spider"
+metadata/pet = null
+
+[node name="AntButton" type="Button" parent="MarginContainer/VBoxContainer/Button/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+text = "Ant"
+metadata/pet = ExtResource("6_40es1")
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -152.0
+offset_right = -103.0
+offset_bottom = -57.0
+grow_horizontal = 0
+grow_vertical = 0
+disabled = true
+text = "Continue"

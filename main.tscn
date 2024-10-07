@@ -31,47 +31,50 @@ size = Vector3(10, 0.2, 5)
 
 [node name="Main" type="Node3D"]
 
-[node name="MatchDirector" type="Node" parent="." node_paths=PackedStringArray("board", "end_turn_button", "declare_end_button")]
+[node name="MatchScene" type="Node3D" parent="."]
+
+[node name="MatchDirector" type="Node" parent="MatchScene" node_paths=PackedStringArray("board", "end_turn_button", "declare_end_button")]
 script = ExtResource("3_y7ne3")
 starting_pets = Array[ExtResource("4_2v2k0")]([ExtResource("5_fdyh0"), ExtResource("4_pxfxd"), ExtResource("6_wxms1"), ExtResource("6_sw17t"), ExtResource("7_w7wry"), ExtResource("7_w7wry")])
 board = NodePath("../Board")
 end_turn_button = NodePath("../CanvasLayer/Control/EndTurnButton")
 declare_end_button = NodePath("../CanvasLayer/Control/DeclareEndButton")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MatchScene"]
 environment = SubResource("Environment_vsr34")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MatchScene"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
+[node name="Camera3D" type="Camera3D" parent="MatchScene"]
+transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
 
-[node name="TableMesh" type="MeshInstance3D" parent="."]
+[node name="TableMesh" type="MeshInstance3D" parent="MatchScene"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 material_override = SubResource("StandardMaterial3D_n5gji")
 mesh = SubResource("BoxMesh_mq1ev")
+skeleton = NodePath("../..")
 
-[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("board_hands")]
+[node name="Board" type="Node3D" parent="MatchScene" node_paths=PackedStringArray("board_hands")]
 script = ExtResource("1_oks61")
 dice_hold_scene = ExtResource("1_37jhy")
 board_hands = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePath("Player2HandPivot")]
 
-[node name="CenterHandPivot" type="Node3D" parent="Board"]
+[node name="CenterHandPivot" type="Node3D" parent="MatchScene/Board"]
 script = ExtResource("3_jfjm0")
 
-[node name="Player1HandPivot" type="Node3D" parent="Board"]
+[node name="Player1HandPivot" type="Node3D" parent="MatchScene/Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642)
 script = ExtResource("3_jfjm0")
 
-[node name="Player2HandPivot" type="Node3D" parent="Board"]
+[node name="Player2HandPivot" type="Node3D" parent="MatchScene/Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.57091)
 script = ExtResource("3_jfjm0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="MatchScene"]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="MatchScene/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,8 +82,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="EndTurnButton" type="Button" parent="CanvasLayer/Control"]
+[node name="EndTurnButton" type="Button" parent="MatchScene/CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -94,8 +98,9 @@ offset_bottom = -168.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "End Turn"
+metadata/_edit_use_anchors_ = true
 
-[node name="DeclareEndButton" type="Button" parent="CanvasLayer/Control"]
+[node name="DeclareEndButton" type="Button" parent="MatchScene/CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -109,3 +114,4 @@ offset_bottom = -35.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Declare End"
+metadata/_edit_use_anchors_ = true
