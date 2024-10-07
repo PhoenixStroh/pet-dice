@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_2xhca"]
 script = ExtResource("1_d6esf")
-ability_text = "When rolled, you may continue to re-roll the dice as many times as you'd like. If you re-roll a two, you must stop re-rolling"
+ability_text = "When rolled, you may continue to re-roll the dice as many times as you'd like. If you re-roll a two, you must stop re-rolling (You may stop re-rolling with right click)"
 is_ability_forced = false
 
 [resource]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bb7j3gfl8ipim"]
+[gd_scene load_steps=21 format=3 uid="uid://bb7j3gfl8ipim"]
 
 [ext_resource type="Script" path="res://pet_selection/pet_button_listener.gd" id="1_bu8cn"]
 [ext_resource type="Theme" uid="uid://m8kn0djrek6m" path="res://assets/themes/default_theme.tres" id="1_rupjl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="7_tkrgh"]
 [ext_resource type="Script" path="res://pet_selection/continue.gd" id="8_e2kdd"]
 [ext_resource type="Resource" uid="uid://b4tvxdhxq4olx" path="res://match/pet_dice/pet_elephant.tres" id="10_sybqt"]
+[ext_resource type="Resource" uid="uid://ch7qhqxemal5g" path="res://match/pet_dice/pet_sheep.tres" id="14_wa3jv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bpdbq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -174,8 +175,8 @@ theme_override_styles/disabled = ExtResource("2_msu8n")
 theme_override_styles/hover = ExtResource("3_hfhbp")
 theme_override_styles/pressed = ExtResource("4_hqh4w")
 theme_override_styles/normal = ExtResource("5_sd78h")
-disabled = true
 text = "Sheep"
+metadata/pet = ExtResource("14_wa3jv")
 
 [node name="ButtonSfx" parent="MarginContainer/VBoxContainer/Button/GridContainer/SheepButton" instance=ExtResource("7_0kd67")]
 

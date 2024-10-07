@@ -5,8 +5,8 @@
 
 [sub_resource type="Resource" id="Resource_cpe2g"]
 script = ExtResource("1_rh1yl")
-ability_text = "When rolled, if you don't roll a 1, you may choose a pet in your opponent's hand to re-roll"
-is_ability_forced = false
+ability_text = "When rolled, if you don't roll a 1, you must choose a pet in your opponent's hand to re-roll"
+is_ability_forced = true
 
 [resource]
 script = ExtResource("1_a3cnn")

@@ -107,7 +107,7 @@ script = ExtResource("10_2hok6")
 spacing = 1.2
 
 [node name="Player1HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.035)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.035)
 script = ExtResource("10_2hok6")
 
 [node name="Player2HandPivot" type="Node3D" parent="Board"]
