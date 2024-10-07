@@ -153,7 +153,7 @@ func _process_pet_action(action : Action):
 					cur_match.end_pet_turn()
 					return
 	
-	var pet_ability_finished := cur_match.get_cur_ability().process_pet_action(cur_match, action)
+	var pet_ability_finished := await cur_match.get_cur_ability().process_pet_action(cur_match, action)
 	if pet_ability_finished:
 		cur_match.end_pet_turn()
 

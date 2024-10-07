@@ -1,12 +1,19 @@
-[gd_resource type="Resource" script_class="PetDie" load_steps=2 format=3 uid="uid://c50xwslvj58mq"]
+[gd_resource type="Resource" script_class="PetDie" load_steps=4 format=3 uid="uid://c50xwslvj58mq"]
 
 [ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="1_8yiiu"]
+[ext_resource type="Script" path="res://match/pet_dice/ability_armadillo.gd" id="1_d6esf"]
+
+[sub_resource type="Resource" id="Resource_2xhca"]
+script = ExtResource("1_d6esf")
+ability_text = "When rolled, you may continue to re-roll the dice as many times as you'd like. If you re-roll a two, you must stop re-rolling"
+is_ability_forced = false
 
 [resource]
 script = ExtResource("1_8yiiu")
 name = "Armadillo"
 type = 1
-faces = Array[int]([1, 2, 2, 4, 6])
+faces = Array[int]([1, 2, 4, 6, 8])
+ability = SubResource("Resource_2xhca")
 default_sfx_path = "res://assets/sound/Armadillo.wav"
 affected_sfx_path = "res://assets/sound/AffectedLowPitch.wav"
 visual_scene_path = "res://assets/pet_dice/pet_armadillo.tscn"

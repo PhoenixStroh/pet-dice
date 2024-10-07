@@ -150,6 +150,7 @@ func start_pet_turn(pet_die : PetDie):
 
 func end_pet_turn():
 	turn_state = TURN_STATE.TURN_ACTION
+	call_pet_constant_shaken(cur_pet_dice, false)
 	cur_pet_dice = null
 
 func end_turn():
