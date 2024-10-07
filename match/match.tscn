@@ -1,0 +1,458 @@
+[gd_scene load_steps=30 format=3 uid="uid://mwt80ux4ar5b"]
+
+[ext_resource type="Script" path="res://match/match_director.gd" id="1_d4qhh"]
+[ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="2_bc6af"]
+[ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="3_2gc1a"]
+[ext_resource type="Resource" uid="uid://dg2mml1j85re0" path="res://match/pet_dice/pet_magpie.tres" id="4_remxv"]
+[ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="5_4o88y"]
+[ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="6_3r23d"]
+[ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="7_cqg0e"]
+[ext_resource type="Script" path="res://board/board.gd" id="8_agr2f"]
+[ext_resource type="PackedScene" uid="uid://cf42aj12nfv8c" path="res://board/dice_hold.tscn" id="9_doo1s"]
+[ext_resource type="Script" path="res://board/board_hand.gd" id="10_2hok6"]
+[ext_resource type="Theme" uid="uid://m8kn0djrek6m" path="res://assets/themes/default_theme.tres" id="11_6fqwq"]
+[ext_resource type="Script" path="res://match/hand_panel.gd" id="11_871i5"]
+[ext_resource type="Script" path="res://pet_selection/continue.gd" id="11_jbfl2"]
+[ext_resource type="Script" path="res://match/end_game_panel.gd" id="12_rf6ex"]
+[ext_resource type="PackedScene" uid="uid://bb7j3gfl8ipim" path="res://pet_selection/pet_selection.tscn" id="12_xjp6g"]
+[ext_resource type="PackedScene" uid="uid://dcp8spyvt7omj" path="res://main.tscn" id="13_isaln"]
+[ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="16_1rbcj"]
+[ext_resource type="PackedScene" uid="uid://dgtkxhbx07l17" path="res://match/popup.tscn" id="16_3vddt"]
+[ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="17_cuk3x"]
+[ext_resource type="StyleBox" uid="uid://dpn6gn21htnj" path="res://assets/style_elements/left_tab_panel_hover.tres" id="18_73hq3"]
+[ext_resource type="StyleBox" uid="uid://cys8a1yhb5c0m" path="res://assets/style_elements/left_tab_panel_pressed.tres" id="19_40yx5"]
+[ext_resource type="StyleBox" uid="uid://cer6tckcokde1" path="res://assets/style_elements/left_tab_panel.tres" id="20_6qv0r"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b3rew"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_4grd8"]
+sky_material = SubResource("ProceduralSkyMaterial_b3rew")
+
+[sub_resource type="Environment" id="Environment_vsr34"]
+background_mode = 2
+sky = SubResource("Sky_4grd8")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5gji"]
+albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mq1ev"]
+size = Vector3(10, 0.2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjpu7"]
+bg_color = Color(0.0920163, 0.129814, 0.504077, 1)
+border_width_left = 5
+border_width_top = 10
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0.930372, 0.823254, 0.76898, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0.0965671, 0.0901858, 0.293073, 0.411765)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccma0"]
+bg_color = Color(0.0920163, 0.129814, 0.504077, 1)
+border_width_left = 5
+border_width_top = 10
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0.930372, 0.823254, 0.76898, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0.0965671, 0.0901858, 0.293073, 0.411765)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="Match" type="Node3D"]
+
+[node name="MatchDirector" type="Node" parent="." node_paths=PackedStringArray("board", "end_turn_button", "declare_end_button", "last_turn_panel", "rolls_remaining_label", "whos_turn_label", "end_game_panel")]
+script = ExtResource("1_d4qhh")
+starting_pets = Array[ExtResource("2_bc6af")]([ExtResource("3_2gc1a"), ExtResource("4_remxv"), ExtResource("5_4o88y"), ExtResource("6_3r23d"), ExtResource("7_cqg0e"), ExtResource("7_cqg0e")])
+board = NodePath("../Board")
+end_turn_button = NodePath("../CanvasLayer/Control/MatchButtons/EndTurnButton")
+declare_end_button = NodePath("../CanvasLayer/Control/MatchButtons/DeclareEndButton")
+last_turn_panel = NodePath("../CanvasLayer/Control/LastTurnPanel")
+rolls_remaining_label = NodePath("../CanvasLayer/Control/RollsRemaining/MarginContainer/Control/NumberInt")
+whos_turn_label = NodePath("../CanvasLayer/Control/WhosTurn/MarginContainer/Control/NumberInt")
+end_game_panel = NodePath("../CanvasLayer/Control/EndGamePanel")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vsr34")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
+
+[node name="TableMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_n5gji")
+mesh = SubResource("BoxMesh_mq1ev")
+skeleton = NodePath("../..")
+
+[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("board_hands", "pet_popup")]
+script = ExtResource("8_agr2f")
+dice_hold_scene = ExtResource("9_doo1s")
+board_hands = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePath("Player2HandPivot")]
+pet_popup = NodePath("../CanvasLayer/Control/Popup")
+
+[node name="CenterHandPivot" type="Node3D" parent="Board"]
+script = ExtResource("10_2hok6")
+
+[node name="Player1HandPivot" type="Node3D" parent="Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642)
+script = ExtResource("10_2hok6")
+
+[node name="Player2HandPivot" type="Node3D" parent="Board"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 1.57091)
+script = ExtResource("10_2hok6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("11_6fqwq")
+metadata/_edit_use_anchors_ = true
+
+[node name="MatchButtons" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer/Control/MatchButtons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -281.0
+offset_right = -41.0
+offset_bottom = -168.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "End Turn"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeclareEndButton" type="Button" parent="CanvasLayer/Control/MatchButtons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -148.0
+offset_right = -41.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Declare End"
+metadata/_edit_use_anchors_ = true
+
+[node name="EndGameButtons" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/Control/EndGameButtons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -281.0
+offset_right = -41.0
+offset_bottom = -168.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Play Again"
+script = ExtResource("11_jbfl2")
+next_scene = ExtResource("12_xjp6g")
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/Control/EndGameButtons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -148.0
+offset_right = -41.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Go To Main Menu"
+script = ExtResource("11_jbfl2")
+next_scene = ExtResource("13_isaln")
+metadata/_edit_use_anchors_ = true
+
+[node name="HandPanel" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("open_close_button")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -228.0
+offset_bottom = 228.0
+grow_vertical = 2
+script = ExtResource("11_871i5")
+open_close_button = NodePath("OpenCloseButton")
+
+[node name="Control" type="PanelContainer" parent="CanvasLayer/Control/HandPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("16_1rbcj")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HandPanel/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HandPanel/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="NumberLabel" type="Label" parent="CanvasLayer/Control/HandPanel/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 18
+text = "HANDS:"
+horizontal_alignment = 1
+
+[node name="NumberInt" type="Label" parent="CanvasLayer/Control/HandPanel/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 36
+text = "1st: THREE OF A KIND (1,1,1)
+2nd: RUN (1,2,3)
+3rd: PAIR (1,1)
+4th: HIGH NUMBER (8)"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NumberInt2" type="Label" parent="CanvasLayer/Control/HandPanel/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 36
+text = "PATTERNS HIGHER IN ORDER BEAT LOWER ONES. IF TIED IN PATTERN, THE HIGHEST NUMBER WINS."
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="OpenCloseButton" type="Button" parent="CanvasLayer/Control/HandPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -61.0
+offset_right = 60.0
+offset_bottom = 62.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = ExtResource("18_73hq3")
+theme_override_styles/pressed = ExtResource("19_40yx5")
+theme_override_styles/normal = ExtResource("20_6qv0r")
+text = "<"
+
+[node name="EndGamePanel" type="PanelContainer" parent="CanvasLayer/Control" node_paths=PackedStringArray("who_won_label", "player_result_labels", "match_buttons", "end_game_buttons")]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -485.0
+offset_top = 50.0
+offset_right = 485.0
+offset_bottom = 203.0
+grow_horizontal = 2
+script = ExtResource("12_rf6ex")
+who_won_label = NodePath("MarginContainer/VBoxContainer/VBoxContainer/WhoWonLabel")
+player_result_labels = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player1ResultLabel"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2ResultLabel")]
+match_buttons = NodePath("../MatchButtons")
+end_game_buttons = NodePath("../EndGameButtons")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/EndGamePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/EndGamePanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/EndGamePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="WhoWonLabel" type="Label" parent="CanvasLayer/Control/EndGamePanel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "PLAYER 1 WINS"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/EndGamePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Player1ResultLabel" type="Label" parent="CanvasLayer/Control/EndGamePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Player 1 : Run (3, 4, 5)"
+horizontal_alignment = 1
+
+[node name="Player2ResultLabel" type="Label" parent="CanvasLayer/Control/EndGamePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Player 2 : Highest Number (6)"
+horizontal_alignment = 1
+
+[node name="Popup" parent="CanvasLayer/Control" instance=ExtResource("16_3vddt")]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -485.0
+offset_top = -578.0
+offset_right = -43.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LastTurnPanel" type="PanelContainer" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -497.0
+offset_top = 33.0
+offset_right = 497.0
+offset_bottom = 105.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kjpu7")
+
+[node name="LastTurnLabel" type="Label" parent="CanvasLayer/Control/LastTurnPanel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 36
+text = "THIS IS YOUR LAST TURN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RollsRemaining" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 319.0
+offset_top = -126.0
+offset_right = 480.0
+offset_bottom = -35.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccma0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/RollsRemaining"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Control/RollsRemaining/MarginContainer"]
+layout_mode = 2
+
+[node name="NumberLabel" type="Label" parent="CanvasLayer/Control/RollsRemaining/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 18
+text = "ROLLS REMAINING:"
+horizontal_alignment = 1
+
+[node name="NumberInt" type="Label" parent="CanvasLayer/Control/RollsRemaining/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 36
+text = "1"
+horizontal_alignment = 1
+
+[node name="WhosTurn" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -126.0
+offset_right = 274.0
+offset_bottom = -35.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccma0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/WhosTurn"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Control/WhosTurn/MarginContainer"]
+layout_mode = 2
+
+[node name="NumberLabel" type="Label" parent="CanvasLayer/Control/WhosTurn/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 18
+text = "WHOS TURN IS IT:"
+horizontal_alignment = 1
+
+[node name="NumberInt" type="Label" parent="CanvasLayer/Control/WhosTurn/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_cuk3x")
+theme_override_font_sizes/font_size = 36
+text = "PLAYER 1"
+horizontal_alignment = 1

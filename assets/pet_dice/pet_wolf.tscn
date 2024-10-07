@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/pet_dice/pet_die_visual.gd" id="1_4p5w3"]
 [ext_resource type="Script" path="res://assets/pet_dice/roll_pivot.gd" id="1_at2ng"]
-[ext_resource type="PackedScene" uid="uid://o6x8qipkno2f" path="res://assets/pet_dice/models/Wolf.glb" id="2_6hjxk"]
+[ext_resource type="PackedScene" uid="uid://o6x8qipkno2f" path="res://assets/pet_dice/models/wolf.glb" id="2_6hjxk"]
 [ext_resource type="PackedScene" uid="uid://d4a5r8atlqw42" path="res://assets/pet_dice/d4_faces.tscn" id="3_lqpxk"]
 [ext_resource type="Material" uid="uid://cll3rdfltyl5r" path="res://assets/pet_dice/pet_dice_mat.tres" id="3_pdwg0"]
 [ext_resource type="Shader" path="res://assets/pet_dice/dice_face.gdshader" id="5_4s6e5"]
@@ -65,9 +65,10 @@ animation_player = NodePath("AnimationPlayer")
 number_mesh = NodePath("LurchEmpty/RollMiddle/RollPivot/wolf/D4Faces")
 
 [node name="LurchEmpty" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851892, 0, 0)
 
 [node name="RollMiddle" type="Node3D" parent="LurchEmpty"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250325, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.250325, 0)
 
 [node name="RollPivot" type="Node3D" parent="LurchEmpty/RollMiddle"]
 script = ExtResource("1_at2ng")

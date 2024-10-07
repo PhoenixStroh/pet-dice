@@ -1,0 +1,637 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgtkxhbx07l17"]
+
+[ext_resource type="Theme" uid="uid://m8kn0djrek6m" path="res://assets/themes/default_theme.tres" id="1_kndrh"]
+[ext_resource type="Script" path="res://match/pet_popup.gd" id="2_6qdcl"]
+[ext_resource type="StyleBox" uid="uid://crrtkwu1ecr1f" path="res://assets/style_elements/basic_panel.tres" id="2_ds44h"]
+[ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="3_864dt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8xrv"]
+bg_color = Color(0.595531, 0.34966, 0.186324, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cv8wy"]
+bg_color = Color(0.595531, 0.34966, 0.186324, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy0ve"]
+bg_color = Color(0.595531, 0.34966, 0.186324, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Popup" type="VBoxContainer" node_paths=PackedStringArray("pet_name_label", "cur_value_label", "pet_ability_label", "d4_faces_parent", "d4_faces", "d6_faces_parent", "d6_faces", "d8_faces_parent", "d8_faces")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -269.5
+offset_right = 221.0
+offset_bottom = 269.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_kndrh")
+theme_override_constants/separation = 15
+script = ExtResource("2_6qdcl")
+pet_name_label = NodePath("PanelContainer/VBoxContainer/PetName")
+cur_value_label = NodePath("PanelContainer2/MarginContainer/VBoxContainer/CurrentValue")
+pet_ability_label = NodePath("PanelContainer2/MarginContainer/VBoxContainer/PetAbility")
+d4_faces_parent = NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4")
+d4_faces = [NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel2/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel3/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel4/Label")]
+d6_faces_parent = NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6")
+d6_faces = [NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1/Panel/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1/Panel2/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1/Panel3/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2/Panel/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2/Panel2/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2/Panel3/Label")]
+d8_faces_parent = NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8")
+d8_faces = [NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel2/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel3/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel4/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel5/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel6/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel7/Label"), NodePath("PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel8/Label")]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_ds44h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PetName" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "SNAIL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_ds44h")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CurrentValueHeader" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "current value"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentValue" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PetAbilityHeader" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "pet ability"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetAbility" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+text = "When rolled, the highest valued dice on the board are set to their lowest value. THIS LINE IS FILLER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control2" type="Control" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PetFacesHeader" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "pet faces"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="D4" type="HBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8xrv")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8xrv")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8xrv")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8xrv")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D4/Panel4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D6" type="VBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="D6Row1" type="HBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8wy")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8wy")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8wy")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row1/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D6Row2" type="HBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8wy")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8wy")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cv8wy")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D6/D6Row2/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = ":)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D8" type="VBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="D8Row1" type="HBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row1/Panel4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D8Row2" type="HBoxContainer" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Panel5" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel6" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel7" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel8" type="Panel" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy0ve")
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/D8/D8Row2/Panel8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -28.5
+offset_right = 26.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_864dt")
+theme_override_font_sizes/font_size = 50
+text = ":)"
+horizontal_alignment = 1
+vertical_alignment = 1

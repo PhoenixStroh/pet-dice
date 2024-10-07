@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ls51sit38nap"
-path="res://.godot/imported/Pivots.glb-20c20994c40177189b7f41a4fe5801c1.scn"
+path="res://.godot/imported/pivots.glb-58d51716c78327acc718feb24af7718c.scn"
 
 [deps]
 
-source_file="res://assets/pet_dice/models/Pivots.glb"
-dest_files=["res://.godot/imported/Pivots.glb-20c20994c40177189b7f41a4fe5801c1.scn"]
+source_file="res://assets/pet_dice/models/pivots.glb"
+dest_files=["res://.godot/imported/pivots.glb-58d51716c78327acc718feb24af7718c.scn"]
 
 [params]
 

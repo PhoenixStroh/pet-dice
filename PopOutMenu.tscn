@@ -1,0 +1,251 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl4c6qwtmc5m8"]
+
+[ext_resource type="FontFile" uid="uid://b83xlei8b26ws" path="res://assets/fonts/Tiny5-Regular.ttf" id="1_vyanv"]
+[ext_resource type="StyleBox" uid="uid://cer6tckcokde1" path="res://assets/style_elements/left_tab_panel.tres" id="2_csypb"]
+[ext_resource type="StyleBox" uid="uid://dpn6gn21htnj" path="res://assets/style_elements/left_tab_panel_hover.tres" id="3_coups"]
+[ext_resource type="StyleBox" uid="uid://cys8a1yhb5c0m" path="res://assets/style_elements/left_tab_panel_pressed.tres" id="4_q0hoi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2som"]
+bg_color = Color(0.0920163, 0.129814, 0.504077, 1)
+border_width_left = 5
+border_width_top = 10
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0.930372, 0.823254, 0.76898, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0.0965671, 0.0901858, 0.293073, 0.411765)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OpenMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 194.0
+offset_right = 85.0
+offset_bottom = 303.0
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("2_csypb")
+text = ">"
+
+[node name="PopUpMenu" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 283.0
+offset_right = -809.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="PopUpMenu"]
+layout_mode = 2
+
+[node name="NumberLabel" type="Label" parent="PopUpMenu/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 7.0
+offset_right = 101.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 18
+text = "HANDS:"
+horizontal_alignment = 1
+
+[node name="NumberInt" type="Label" parent="PopUpMenu/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 25.0
+offset_right = 300.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "1st: THREE OF A KIND (1,1,1)
+2nd: RUN (1,2,3)
+3rd: PAIR (1,1)
+4th: HIGH NUMBER (8)
+
+PATTERNS HIGHER IN ORDER BEAT LOWER ONES. IF TIED IN PATTERN, THE HIGHEST NUMBER WINS."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CloseMenu" type="Button" parent="PopUpMenu/Control"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -99.0
+offset_right = 59.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = ExtResource("3_coups")
+theme_override_styles/pressed = ExtResource("4_q0hoi")
+theme_override_styles/normal = ExtResource("2_csypb")
+text = "<"
+
+[node name="WinPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -497.0
+offset_top = 12.0
+offset_right = 497.0
+offset_bottom = 149.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="Control" type="Control" parent="WinPanel"]
+layout_mode = 2
+
+[node name="NumberInt" type="Label" parent="WinPanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "PLAYER 1 WINS!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NumberInt2" type="Label" parent="WinPanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -387.0
+offset_top = 57.0
+offset_right = 213.0
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "PLAYER 1:"
+autowrap_mode = 3
+
+[node name="NumberInt3" type="Label" parent="WinPanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 57.0
+offset_right = 384.0
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "RUN (1,2,3)"
+autowrap_mode = 3
+
+[node name="NumberInt4" type="Label" parent="WinPanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_top = 57.0
+offset_right = 596.0
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "PLAYER 2:"
+autowrap_mode = 3
+
+[node name="NumberInt5" type="Label" parent="WinPanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 166.0
+offset_top = 57.0
+offset_right = 766.0
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "RUN (1,2,3)"
+autowrap_mode = 3
+
+[node name="LastTurnPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -497.0
+offset_top = 33.0
+offset_right = 497.0
+offset_bottom = 105.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="LastTurnLabel" type="Label" parent="LastTurnPanel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "THIS IS YOUR LAST TURN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RollsRemaining" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1194.0
+offset_top = 660.0
+offset_right = -51.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2som")
+
+[node name="MarginContainer" type="MarginContainer" parent="RollsRemaining"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Control" type="VBoxContainer" parent="RollsRemaining/MarginContainer"]
+layout_mode = 2
+
+[node name="NumberLabel" type="Label" parent="RollsRemaining/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 18
+text = "ROLLS REMAINING:"
+horizontal_alignment = 1
+
+[node name="NumberInt" type="Label" parent="RollsRemaining/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vyanv")
+theme_override_font_sizes/font_size = 36
+text = "1"
+horizontal_alignment = 1

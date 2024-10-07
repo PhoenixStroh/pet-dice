@@ -1,111 +1,107 @@
-[gd_scene load_steps=16 format=3 uid="uid://dcp8spyvt7omj"]
+[gd_scene load_steps=4 format=3 uid="uid://dcp8spyvt7omj"]
 
-[ext_resource type="PackedScene" uid="uid://cf42aj12nfv8c" path="res://board/dice_hold.tscn" id="1_37jhy"]
-[ext_resource type="Script" path="res://board/board.gd" id="1_oks61"]
-[ext_resource type="Script" path="res://board/board_hand.gd" id="3_jfjm0"]
-[ext_resource type="Script" path="res://match/match_director.gd" id="3_y7ne3"]
-[ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="4_2v2k0"]
-[ext_resource type="Resource" uid="uid://dg2mml1j85re0" path="res://match/pet_dice/pet_magpie.tres" id="4_pxfxd"]
-[ext_resource type="Resource" uid="uid://b6vxtbf6uk0qc" path="res://match/pet_dice/pet_jellyfish.tres" id="5_fdyh0"]
-[ext_resource type="Resource" uid="uid://bmcs54pedlivy" path="res://match/pet_dice/pet_ant.tres" id="6_sw17t"]
-[ext_resource type="Resource" uid="uid://w5m461ekmssb" path="res://match/pet_dice/pet_mouse.tres" id="6_wxms1"]
-[ext_resource type="Resource" uid="uid://rxkpsvb2vnq0" path="res://match/pet_dice/pet_wolf.tres" id="7_w7wry"]
+[ext_resource type="Script" path="res://pet_selection/continue.gd" id="1_22jjp"]
+[ext_resource type="PackedScene" uid="uid://bb7j3gfl8ipim" path="res://pet_selection/pet_selection.tscn" id="1_wuseq"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b3rew"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="GDScript" id="GDScript_tqwlw"]
+script/source = "extends Button
 
-[sub_resource type="Sky" id="Sky_4grd8"]
-sky_material = SubResource("ProceduralSkyMaterial_b3rew")
+func _ready() -> void:
+	if OS.has_feature(\"html\"):
+		disabled = true
 
-[sub_resource type="Environment" id="Environment_vsr34"]
-background_mode = 2
-sky = SubResource("Sky_4grd8")
-tonemap_mode = 2
+func _pressed() -> void:
+	get_tree().quit()
+"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5gji"]
-albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
+[node name="Main" type="Node"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_mq1ev"]
-size = Vector3(10, 0.2, 5)
-
-[node name="Main" type="Node3D"]
-
-[node name="MatchDirector" type="Node" parent="." node_paths=PackedStringArray("board", "end_turn_button", "declare_end_button")]
-script = ExtResource("3_y7ne3")
-starting_pets = Array[ExtResource("4_2v2k0")]([ExtResource("5_fdyh0"), ExtResource("4_pxfxd"), ExtResource("6_wxms1"), ExtResource("6_sw17t"), ExtResource("7_w7wry"), ExtResource("7_w7wry")])
-board = NodePath("../Board")
-end_turn_button = NodePath("../CanvasLayer/Control/EndTurnButton")
-declare_end_button = NodePath("../CanvasLayer/Control/DeclareEndButton")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vsr34")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 4.49709, -4.43325)
-
-[node name="TableMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-material_override = SubResource("StandardMaterial3D_n5gji")
-mesh = SubResource("BoxMesh_mq1ev")
-
-[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("board_hands")]
-script = ExtResource("1_oks61")
-dice_hold_scene = ExtResource("1_37jhy")
-board_hands = [NodePath("CenterHandPivot"), NodePath("Player1HandPivot"), NodePath("Player2HandPivot")]
-
-[node name="CenterHandPivot" type="Node3D" parent="Board"]
-script = ExtResource("3_jfjm0")
-
-[node name="Player1HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642)
-script = ExtResource("3_jfjm0")
-
-[node name="Player2HandPivot" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.57091)
-script = ExtResource("3_jfjm0")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
-[node name="EndTurnButton" type="Button" parent="CanvasLayer/Control"]
+[node name="Label" type="Label" parent="Control"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -339.0
-offset_top = -281.0
-offset_right = -41.0
-offset_bottom = -168.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "End Turn"
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 88.0
+offset_right = 296.0
+offset_bottom = 280.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 140
+text = "PET DICE"
 
-[node name="DeclareEndButton" type="Button" parent="CanvasLayer/Control"]
+[node name="PlayLocalButton" type="Button" parent="Control"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -339.0
-offset_top = -148.0
-offset_right = -41.0
-offset_bottom = -35.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Declare End"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -184.0
+offset_right = 172.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Play Local 1v1"
+script = ExtResource("1_22jjp")
+next_scene = ExtResource("1_wuseq")
+
+[node name="PlayAIButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -32.0
+offset_right = 172.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Play Vs AI"
+
+[node name="TutorialButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = 126.0
+offset_right = 172.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Tutorial (PLEASE TRY!)"
+
+[node name="QuitButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = 295.0
+offset_right = 172.0
+offset_bottom = 421.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+script = SubResource("GDScript_tqwlw")

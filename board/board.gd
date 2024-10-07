@@ -9,11 +9,21 @@ signal pet_die_interacted(pet_die : PetDie)
 
 @export var board_hands : Array[BoardHand]
 
+@export var pet_popup : PetPopup
+
+func _on_pet_dice_hover_changed(is_hovering : bool, pet_die : PetDie):
+	if pet_popup:
+		if is_hovering and pet_die:
+			pet_popup.turn_on(pet_die)
+		else:
+			pet_popup.turn_off()
+
 func setup(center_hand : Hand):
 	for i in board_hands.size():
 		var board_hand = board_hands[i]
 		board_hand.setup(dice_hold_scene, i)
 		board_hand.dice_hold_interacted.connect(pet_die_interacted.emit)
+		board_hand.pet_dice_hover_changed.connect(_on_pet_dice_hover_changed)
 		
 		board_hands.append(board_hand)
 	

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PetDie" load_steps=2 format=3 uid="uid://c50xwslvj58mq"]
+
+[ext_resource type="Script" path="res://match/pet_dice/pet_die.gd" id="1_8yiiu"]
+
+[resource]
+script = ExtResource("1_8yiiu")
+name = "Armadillo"
+type = 1
+faces = Array[int]([1, 2, 2, 4, 6])
+visual_scene_path = "res://assets/pet_dice/pet_armadillo.tscn"

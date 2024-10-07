@@ -88,12 +88,12 @@ func valuate_hand(player_hand : Hand, center_hand : Hand):
 # -1 worse, 0 tied, 1 better
 func is_this_valuation_better(other_valuation : Valuation) -> COMPARISON:
 	if hand_pattern != other_valuation.hand_pattern:
-		var is_better_pattern := hand_pattern > other_valuation.hand_pattern
+		var is_better_pattern := hand_pattern < other_valuation.hand_pattern
 		return COMPARISON.BETTER if is_better_pattern else COMPARISON.WORSE
 	
 	if hand_value == other_valuation.hand_value:
 		return COMPARISON.TIED
-	var is_better_value := hand_value > other_valuation.hand_value
+	var is_better_value := hand_value < other_valuation.hand_value
 	return COMPARISON.BETTER if is_better_value else COMPARISON.WORSE
 
 func _to_string() -> String:
